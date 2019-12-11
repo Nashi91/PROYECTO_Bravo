@@ -1,0 +1,47 @@
+PROYECTO BASES DE DATOS
+--------------------------------------------------------------------------------------------------------
+Ideas iniciales:
+    -> Irauto (Trabajo ADMON Jon+Carlos)
+    -> Empresa 
+    -> Tienda
+    -> Escuela
+    -> Biblioteca
+    -> Hospital
+    -> Banco
+    -> Museo
+    -> Videojuego
+    -> Reinos de Thalesia [X]
+-------------------------------------------
+Planetamiento:
+    El señor Mario, en toda su buena voluntad, desea facilitar el trabajo a los gestores
+    del juego de rol "Reinos de Thalesia". Por ello, dado que las carecteristicas de este juego
+    hacen que tenga que manejarse una inmensa cantidad de datos les propone diseñar y crear
+    una base de datos para centralizar su gestion y dejar de utilizar hojas de Excel repartidas
+    entre la carpeta de Escritorio, Google Drive y Descargas.
+
+    Teniendo en cuenta que este juego se basa en un foro, se plantean los siguientes supuestos:
+    1 -> Como todo foro, existen usuarios de los cuales se requiere almacenar su informacion personal
+            que sera la siguiente: Login, Correo electronico, Contraseña, Genero, Fecha De Nacimiento,
+            Localizacion. Se querra almacenar tambien el/los amigos que posea en el foro y su personaje
+            para el juego. El usuario podra tambien supervisar temas que sean de su interes con lo cual
+            se debera almacenar esta informacion tambien. Ademas, podran ser moderadores de temas
+            lo cual se tendra que almacenar.
+    2 -> Ha de tenerse en cuenta que los usuarios pueden ser administradores del foro
+    3 -> En dicho foro tambien se encuentran temas de discusion, de estos queremos almacenar su titulo,
+            Fecha de creacion y su creador. Los distingueremos por un codigo (Autonum).
+            Los temas son creados por usuarios administradores y dichos temas albergan conversaciones.
+    4 -> Dentro de cada tema, habra una o varias conversaciones que pueden ser creadas tanto por usuarios
+            sean o no administradores, de estas conversaciones queremos almacenar su titulo,
+            su fecha de creacion y si se encuentra bloqueado/cerrado.
+    5 -> A nivel de juego, un usuario tiene un personaje que es unico en su existencia, de este personaje
+            se necesitara conocer su Nombre, Apellidos, Genero, Raza, Clase, Religion, Magia, Historia, Dinero.
+            Debe almacenarse tambien a que reino pertenece y obviamente el jugador al que pertenece.
+    6 -> En el juego existen diferentes reinos unicos, de estos reinos se quiere almacenar su Nombre, Monarca,
+            Forma de gobierno, Legado, Contacto, Lema, Religion de estado, Ejercito, Territorio Capital, Descripcion los
+            territorios que posee y los personajes que pertenecen a este reino. Tanto Legado como Monarca deben ser 
+            personajes de jugadores.
+    7 -> Los reinos, como un reino real, poseen territorios que seran tambien unicos. De un territorio se debe
+            almacenar su Nombre, el reino al que pertenece, su Tipo de topologia (Montaña, Llanura...) y sus recursos.
+    8 -> 
+    9 -> Nombre, Detalles, Fecha de inicio, Fecha Fin, Ubicacion, Coste y sus participantes
+    
