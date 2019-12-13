@@ -32,19 +32,21 @@ Planetamiento:
             Los temas son creados por usuarios administradores y dichos temas albergan conversaciones.
     4 -> Dentro de cada tema, habra una o varias conversaciones que pueden ser creadas tanto por usuarios
             sean o no administradores, de estas conversaciones queremos almacenar su titulo,
-            su fecha de creacion y si se encuentra bloqueado/cerrado.
-    5 -> A nivel de juego, un usuario tiene un personaje que es unico en su existencia, de este personaje
+            su fecha de creacion y si se encuentra bloqueado/cerrado y los mensajes que se escriban en ellas.
+    5 -> En cada conversacion los usuarios podran escribir mensajes, de estos se debe almacenar su contenido y
+            la fecha de creacion de este ademas de quien lo ha escrito.
+    6 -> A nivel de juego, un usuario tiene un personaje que es unico en su existencia, de este personaje
             se necesitara conocer su Nombre, Apellidos, Genero, Raza, Clase, Religion, Magia, Historia, Dinero.
             Debe almacenarse tambien a que reino pertenece y obviamente el jugador al que pertenece.
-    6 -> En el juego existen diferentes reinos unicos, de estos reinos se quiere almacenar su Nombre, Monarca,
+    7 -> En el juego existen diferentes reinos unicos, de estos reinos se quiere almacenar su Nombre, Monarca,
             Forma de gobierno, Legado, Contacto, Lema, Religion de estado, Ejercito, Territorio Capital, Descripcion los
             territorios que posee y los personajes que pertenecen a este reino. Tanto Legado como Monarca deben ser 
             personajes de jugadores.
-    7 -> Los reinos, como un reino real, poseen territorios que seran tambien unicos. De un territorio se debe
+    8 -> Los reinos, como un reino real, poseen territorios que seran tambien unicos. De un territorio se debe
             almacenar su Nombre, el reino al que pertenece, su Tipo de topologia (Montaña, Llanura...) y sus recursos.
-    8 -> Cada territorio poseera una serie de recursos que otorgara al reino. Estos recursos seran Comida, Madera, Piedra,
+    9 -> Cada territorio poseera una serie de recursos que otorgara al reino. Estos recursos seran Comida, Madera, Piedra,
             Hierro, Dinero, Poblacion, Edificios, Asedio(Atk), Defensas(Def)
-    9 -> Se debe tener en cuenta que tambien se organizan eventos (de rol) para los usuarios del foro. De estos eventos 
+    10 -> Se debe tener en cuenta que tambien se organizan eventos (de rol) para los usuarios del foro. De estos eventos 
             se debe conocer su Nombre, Detalles, Fecha de inicio y Fecha de fin, la ubicacion en la cual se desarrolla,
             el coste que tenga y sus participantes. Los usuarios pueden participar en estos eventos con sus personajes o
             con personajes genericos para evitar la perdida de sus preciadas creaciones.
