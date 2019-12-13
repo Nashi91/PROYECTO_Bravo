@@ -42,9 +42,10 @@ Planetamiento:
             personajes de jugadores.
     7 -> Los reinos, como un reino real, poseen territorios que seran tambien unicos. De un territorio se debe
             almacenar su Nombre, el reino al que pertenece, su Tipo de topologia (Montaña, Llanura...) y sus recursos.
-    8 -> Cada territorio poseera una serie de recursos que otorgara al reino. Estos recursos seran [placeholder recursos]
+    8 -> Cada territorio poseera una serie de recursos que otorgara al reino. Estos recursos seran Comida, Madera, Piedra,
+            Hierro, Dinero, Poblacion, Edificios, Asedio(Atk), Defensas(Def)
     9 -> Se debe tener en cuenta que tambien se organizan eventos (de rol) para los usuarios del foro. De estos eventos 
             se debe conocer su Nombre, Detalles, Fecha de inicio y Fecha de fin, la ubicacion en la cual se desarrolla,
             el coste que tenga y sus participantes. Los usuarios pueden participar en estos eventos con sus personajes o
-            con personajes genericos para evitar la perdida de sus preciadas creaciones
+            con personajes genericos para evitar la perdida de sus preciadas creaciones.
     
