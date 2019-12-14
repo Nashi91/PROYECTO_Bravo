@@ -22,10 +22,9 @@ Planetamiento:
     Teniendo en cuenta que este juego se basa en un foro, se plantean los siguientes supuestos:
     1 -> Como todo foro, existen usuarios de los cuales se requiere almacenar su informacion personal
             que sera la siguiente: Login, Correo electronico, Contraseña, Genero, Fecha De Nacimiento,
-            Localizacion. Se querra almacenar tambien el/los amigos que posea en el foro y su personaje
-            para el juego. El usuario podra tambien supervisar temas que sean de su interes con lo cual
-            se debera almacenar esta informacion tambien. Ademas, podran ser moderadores de temas
-            lo cual se tendra que almacenar.
+            Localizacion. Se querra almacenar tambien su personaje para el juego. El usuario podra 
+            tambien supervisar temas que sean de su interes con lo cual se debera almacenar esta 
+            informacion tambien. Ademas, podran ser moderadores de temas lo cual se tendra que almacenar.
     2 -> Ha de tenerse en cuenta que los usuarios pueden ser administradores del foro
     3 -> En dicho foro tambien se encuentran temas de discusion, de estos queremos almacenar su titulo,
             Fecha de creacion y su creador. Los distingueremos por un codigo (Autonum).
