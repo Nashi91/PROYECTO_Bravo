@@ -51,4 +51,7 @@ PLANTEAMIENTO:
             con personajes genericos para evitar la perdida de sus preciadas creaciones, el como participa debera saberse.
 -------------------------------------------
 REGLAS DE NEGOCIO:
-    Regla 1:
+    Regla 1: Un usuario unicamente podra crear temas si es un administrador.
+    Regla 2: Solo si un usuario es moderador podra moderar temas.
+    Regla 3: El codigo de las conversaciones sera igual al numero de la conversacion dentro de su correspondiente tema
+    Regla 4: El codigo de los mensajes sera igual al numero del mensaje dentro de su correspondiente conversacion.
