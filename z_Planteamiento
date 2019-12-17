@@ -12,7 +12,7 @@ Ideas iniciales:
     -> Videojuego
     -> Reinos de Thalesia [X]
 -------------------------------------------
-Planetamiento:
+PLANTEAMIENTO:
     El señor Mario, en toda su buena voluntad, desea facilitar el trabajo a los gestores
     del juego de rol "Reinos de Thalesia". Por ello, dado que las carecteristicas de este juego
     hacen que tenga que manejarse una inmensa cantidad de datos les propone diseñar y crear
@@ -21,7 +21,7 @@ Planetamiento:
 
     Teniendo en cuenta que este juego se basa en un foro, se plantean los siguientes supuestos:
     1 -> Como todo foro, existen usuarios de los cuales se requiere almacenar su informacion personal
-            que sera la siguiente: Login, Correo electronico, Contraseña, Genero, Fecha De Nacimiento,
+            que sera la siguiente: Login, Nick, Correo electronico, Contraseña, Genero, Fecha De Nacimiento,
             Localizacion. Se querra almacenar tambien su personaje para el juego. El usuario podra 
             tambien supervisar temas que sean de su interes con lo cual se debera almacenar esta 
             informacion tambien. Ademas, podran ser moderadores de temas lo cual se tendra que almacenar.
@@ -49,4 +49,6 @@ Planetamiento:
             se debe conocer su Nombre, Detalles, Fecha de inicio y Fecha de fin, la ubicacion en la cual se desarrolla,
             el coste que tenga y sus participantes. Los usuarios pueden participar en estos eventos con sus personajes o
             con personajes genericos para evitar la perdida de sus preciadas creaciones, el como participa debera saberse.
-    
+-------------------------------------------
+REGLAS DE NEGOCIO:
+    Regla 1:
