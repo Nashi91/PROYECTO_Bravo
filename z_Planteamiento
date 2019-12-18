@@ -53,11 +53,16 @@ PLANTEAMIENTO:
 REGLAS DE NEGOCIO:
     Regla 1: Un usuario unicamente podra crear temas si es un administrador.
     Regla 2: Solo si un usuario es moderador podra moderar temas.
-    Regla 3: El codigo de las conversaciones sera igual al numero de la conversacion dentro de su correspondiente tema.
-    Regla 4: El codigo de los mensajes sera igual al numero del mensaje dentro de su correspondiente conversacion.
-    Regla 5: En caso de que un personaje muera, debera de ser eliminado del registro y almacenarse en un registro a parte.
-    Regla 6: Dada la destruccion de un reino, todos sus territorios deberan volverse tierra de nadie.
+    Regla 3: El codigo de las conversaciones sera igual al numero de la conversacion dentro de su correspondiente tema. [Trigger + Procedimiento almacenado]
+    Regla 4: El codigo de los mensajes sera igual al numero del mensaje dentro de su correspondiente conversacion.      [^]
+    Regla 5: En caso de que un personaje muera, debera de ser eliminado del registro y almacenarse en un registro a parte. [Procedimiento almacenado]
+    Regla 6: Dada la destruccion de un reino, todos sus territorios deberan volverse tierra de nadie. [Procedimiento almacenado]
     Regla 7: El correo electronico que proporcione el usuario debe ser unico, no puede haber dos usuarios con una misma direccion.
     Regla 8: La contraseña de un usuario debera ser como minimo de 8 caracteres.
     Regla 9: El codigo de tema debera de poseer el siguiente formato: 00AA.
+    Regla 10: La fecha de fin de un evento debera ser siempre posterior respetando un minimo de un dia respecto a la fecha de inicio
+    Regla 11: Los usuarios administradores nunca pueden ser eliminados.
+    Regla 12: Por proteccion de datos, solicitada la baja y eliminacion de un usuario deberan eliminarse todos sus datos. [Procedimiento almacenado / Trigger]
+    Regla 13: Los reinos unicamente podran ser declarados por usuarios administradores.
+    Regla 14: En caso de que no se asigne un legado, el propio rey actuara de este.
     Regla ?: Si un rey cae, se le sustituye por el legado? Posible procedimiento almacenado
