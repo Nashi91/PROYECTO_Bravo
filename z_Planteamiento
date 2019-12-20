@@ -64,5 +64,5 @@ REGLAS DE NEGOCIO:
     Regla 11: Los usuarios administradores nunca pueden ser eliminados.
     Regla 12: Por proteccion de datos, solicitada la baja y eliminacion de un usuario deberan eliminarse todos sus datos. [Procedimiento almacenado / Trigger]
     Regla 13: Los reinos unicamente podran ser declarados por usuarios administradores.
-    Regla 14: En caso de que no se asigne un legado, el propio rey actuara de este.
-    Regla ?: Si un rey cae, se le sustituye por el legado? Posible procedimiento almacenado
+    Regla 14: En caso de que no se asigne un legado, este campo estara vacio hasta su asignacion.
+    Regla 14: En caso de que un rey caiga, se le sustuira por el legado y este ultimo quedara vacio hasta que se nombre otro. [Procedimiento almacenado]
