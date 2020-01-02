@@ -26,3 +26,10 @@ CUADERNO BITACORA
 17-12-2019: Se empiezan a plantear las diferentes reglas de negocio, todos los integrantes del grupo van aportando diferentes
             ideas. Inicialmente se recogen cuatro en el apartado de foro.
             Durante la tarde por parte de Carlos se añaden 5 posibles reglas mas a revisar el siguiente dia.
+18-12-2019: Se revisan las reglas y los diagramas en grupo, se realizan una serie de ajustes en alguna de las reglas y se 
+            establecen los posibles procedimientos almacenados y triggers.
+20-12-2019: Se actualiza el GitHub y en grupo se revisa la documentacion formateada por Mario.
+27-12-2019: Carlos basandose en el documento inicial entregado por Mario añade un formato mas profundo (Sangrias, portada, indice, etc).
+02-01-2020: Otra vez, pues no es que haya nada mucho mejor que hacer en navidades, se añaden las reglas de negocio y los procedimientos
+            almacenados planteados al documento final describiendose en una mayor profundidad. Se realizan algunos cambios en el diagrama
+            relacional respecto a nulos y el supuesto 10.
