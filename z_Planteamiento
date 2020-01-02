@@ -65,4 +65,5 @@ REGLAS DE NEGOCIO:
     Regla 12: Por proteccion de datos, solicitada la baja y eliminacion de un usuario deberan eliminarse todos sus datos. [TRGHelper_DelAllUserData]
     Regla 13: Los reinos unicamente podran ser declarados por usuarios administradores.
     Regla 14: En caso de que no se asigne un legado, este campo estara vacio hasta su asignacion.
+    //¿Debe añadirse?
     Regla 14: En caso de que un rey caiga, se le sustuira por el legado y este ultimo quedara vacio hasta que se nombre otro. [SP_RulerDeath]
