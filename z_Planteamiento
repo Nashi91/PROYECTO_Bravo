@@ -53,16 +53,16 @@ PLANTEAMIENTO:
 REGLAS DE NEGOCIO:
     Regla 1: Un usuario unicamente podra crear temas si es un administrador.
     Regla 2: Solo si un usuario es moderador podra moderar temas.
-    Regla 3: El codigo de las conversaciones sera igual al numero de la conversacion dentro de su correspondiente tema. [Trigger + Procedimiento almacenado]
+    Regla 3: El codigo de las conversaciones sera igual al numero de la conversacion dentro de su correspondiente tema. [TRGHelper_GenWeakCode]
     Regla 4: El codigo de los mensajes sera igual al numero del mensaje dentro de su correspondiente conversacion.      [^]
-    Regla 5: En caso de que un personaje muera, debera de ser eliminado del registro y almacenarse en un registro a parte. [Procedimiento almacenado]
-    Regla 6: Dada la destruccion de un reino, todos sus territorios deberan volverse tierra de nadie. [Procedimiento almacenado]
+    Regla 5: En caso de que un personaje muera, debera de ser eliminado del registro y almacenarse en un registro a parte. [SP_PlayerCharDeath]
+    Regla 6: Dada la destruccion de un reino, todos sus territorios deberan volverse tierra de nadie. [SP_KngdmDestroyed]
     Regla 7: El correo electronico que proporcione el usuario debe ser unico, no puede haber dos usuarios con una misma direccion.
     Regla 8: La contraseña de un usuario debera ser como minimo de 8 caracteres.
     Regla 9: El codigo de tema debera de poseer el siguiente formato: 00AA.
     Regla 10: La fecha de fin de un evento debera ser siempre posterior respetando un minimo de un dia respecto a la fecha de inicio
     Regla 11: Los usuarios administradores nunca pueden ser eliminados.
-    Regla 12: Por proteccion de datos, solicitada la baja y eliminacion de un usuario deberan eliminarse todos sus datos. [Procedimiento almacenado / Trigger]
+    Regla 12: Por proteccion de datos, solicitada la baja y eliminacion de un usuario deberan eliminarse todos sus datos. [TRGHelper_DelAllUserData]
     Regla 13: Los reinos unicamente podran ser declarados por usuarios administradores.
     Regla 14: En caso de que no se asigne un legado, este campo estara vacio hasta su asignacion.
-    Regla 14: En caso de que un rey caiga, se le sustuira por el legado y este ultimo quedara vacio hasta que se nombre otro. [Procedimiento almacenado]
+    Regla 14: En caso de que un rey caiga, se le sustuira por el legado y este ultimo quedara vacio hasta que se nombre otro. [SP_RulerDeath]
