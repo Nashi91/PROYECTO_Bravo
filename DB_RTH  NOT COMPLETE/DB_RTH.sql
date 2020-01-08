@@ -2,7 +2,10 @@ CREATE DATABASE DB_RTH
 USE DB_RTH
 
 -- TABLAS BASE DE DATOS---
-
+/* --------- TO REVIEW --------- */
+--> Revisar nombres de tablas/campos, tipos y constraints
+--> Eliminar DROPs o cambiarlos de posicion para asegurar correcta ejecucion
+/* --------- TO REVIEW --------- */
 CREATE TABLE MENSAJES(
 	CODIGO CHAR(4) PRIMARY KEY,
 	TEMA INT NOT NULL,
@@ -119,6 +122,13 @@ CREATE TABLE TERRITORIOS(
 	ASEDIO SMALLINT,
 )
 DROP TABLE TERRITORIOS
+/* --------- TO REVIEW --------- */
+--> Los constraints de claves externas y primarias 
+	--deben estar dentro de la definicion de las tablas
+--> Verificar nombres de constraints
+--> Falta de definicion de claves compuestas
+--> Comprobar correcta definicion de claves externas (compuestas y no)
+/* --------- TO REVIEW --------- */
 --PRIMARY KEYS --
 ALTER TABLE CONVERSACIONES
 ADD CONSTRAINT PK_CONVERSACIONES PRIMARY KEY(CODIGO,TEMA)
@@ -193,6 +203,10 @@ EXEC SP_BINDEFAULT TODAY, 'MENSAJES.FECHACREACIÓN'
 EXEC SP_BINDEFAULT TODAY, 'TEMAS.FECHACREACIÓN'
 EXEC SP_BINDEFAULT TODAY, 'CONVERSACIONES.FECHACREACIÓN'
 --------------------------------------------------------
+/* --------- TO REVIEW --------- */
+--> Regla FECHAS, ¿Innecesaria o se implementa?
+--> Regla CODS, verificar que es el formato deseado para los campos aplicados
+/* --------- TO REVIEW --------- */
 --REGLAS --
 CREATE RULE CODS AS
 (@CAMPO LIKE '[0-9][0-9][A-Z][A-Z]')
