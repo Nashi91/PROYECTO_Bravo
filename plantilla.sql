@@ -5,6 +5,6 @@
     [TrgInstead]            ->  ???
     [TrgAfter]              ->
     PrmKEY_tabla            ->  Restricción de clave primaria
-    ExtKEY_tabla1_tabla2    ->  Restricción de clave externa
+    ExtKEY_tabla1_tablaN    ->  Restricción de clave externa
 
 */
