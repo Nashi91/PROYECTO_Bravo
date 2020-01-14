@@ -34,7 +34,6 @@ CREATE TABLE USUARIOS
         CONSTRAINT PrmKEY_USUARIOS PRIMARY KEY (usuario),
         /*  TODO
             -Constraint de provincia y genero
-            -Constraint de fechanacimiento (General o local?)
             -Constraint de contraseña
         */
 )
@@ -52,7 +51,6 @@ CREATE TABLE TEMAS
             REFERENCES USUARIOS(usuario),
         /* TODO
             -Constraint de codtema
-            -Default de fecha_creacion (General o local?)
         */
 )
     CREATE TABLE SUPERVISADOS
@@ -90,7 +88,6 @@ CREATE TABLE CONVERSACIONES
             REFERENCES USUARIOS(usuario)
         /* TODO
             -Constraint de codtema
-            -Default de fecha_creacion (General o local?)
         */
 )
 CREATE TABLE MENSAJES
@@ -108,7 +105,6 @@ CREATE TABLE MENSAJES
             REFERENCES USUARIOS(usuario)
     /* TODO
         -Constraint de codtema
-        -Default de fecha_creacion (General o local?)
     */
 )
 /*
@@ -135,6 +131,7 @@ CREATE TABLE PERSONAJES
         -Constraint de genero
         -Constraint de raza, clase y magia (???)
         -Default dinero 100 oros
+        -Default magia "No mago"
     */
 )
 CREATE TABLE REINOS
@@ -180,6 +177,7 @@ CREATE TABLE REINOS
                 REFERENCES REINOS(nombre)
         /* TODO
             -Constraint de topologia
+            -Default para los campos de Age of Empires
         */
     )
 /*
@@ -196,7 +194,6 @@ CREATE TABLE EVENTOS
     fecha_fin DATETIME,
         CONSTRAINT PrmKEY_EVENTOS PRIMARY KEY (codevnt)
     /* TODO
-        -Defaults de fecha
         -Constraint de fechas inicio - fin
     */
 )
@@ -223,3 +220,36 @@ ALTER TABLE REINOS
     ADD CONSTRAINT ExtKEY_REINOS_TERRITORIOS_CAPITAL
             FOREIGN KEY (capital) REFERENCES TERRITORIOS(nombre)
 GO
+
+-- GLOBAL CONSTRAINT / DEFAULT DECLARATION
+/*RULES*/
+CREATE RULE NO_DATE_AFTER_TODAY AS
+    (
+        @field <= GETDATE()
+    )
+GO
+/*DEFAULTS*/
+CREATE DEFAULT DATE_TODAY AS 
+    GETDATE()
+GO
+CREATE DEFAULT BITFALSE AS
+    0
+GO
+-- GLOBAL CONSTRAINT / DEFAULT LINKAGE
+/*RULES*/
+EXEC SP_BINDRULE NO_DATE_AFTER_TODAY, 'USUARIOS.fecha_nacimiento'
+EXEC SP_BINDRULE NO_DATE_AFTER_TODAY, 'TEMAS.fecha_creacion'
+EXEC SP_BINDRULE NO_DATE_AFTER_TODAY, 'CONVERSACIONES.fecha_creacion'
+EXEC SP_BINDRULE NO_DATE_AFTER_TODAY, 'MENSAJES.fecha_creacion'
+/*DEFAULTS*/
+EXEC SP_BINDEFAULT DATE_TODAY, 'TEMAS.fecha_creacion'
+EXEC SP_BINDEFAULT DATE_TODAY, 'CONVERSACIONES.fecha_creacion'
+EXEC SP_BINDEFAULT DATE_TODAY, 'EVENTOS.fecha_inicio'
+
+EXEC SP_BINDEFAULT BITFALSE, 'USUARIOS.tipo'
+EXEC SP_BINDEFAULT BITFALSE, 'CONVERSACIONES.bloqueado'
+EXEC SP_BINDEFAULT BITFALSE, 'PARTICIPANTES.personaje'
+/*
+EXEC SP_BINDEFAULT TODAY, 'MENSAJES.FECHACREACIÓN'
+EXEC SP_BINDRULE CODS, 'MENSAJES.CODIGO'
+*/
