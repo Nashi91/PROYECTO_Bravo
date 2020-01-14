@@ -62,7 +62,7 @@ REGLAS DE NEGOCIO:
     [-----]     Regla 9: El codigo de tema debera de poseer el siguiente formato: 00AA.
     [Cris]      Regla 10: La fecha de fin de un evento debera ser siempre posterior respetando un minimo de un dia respecto a la fecha de inicio
     [Cris]      Regla 11: Los usuarios administradores nunca pueden ser eliminados.
-    [Carlos]     Regla 12: Por proteccion de datos, solicitada la baja y eliminacion de un usuario deberan eliminarse todos sus datos. [TRGHelper_DelAllUserData]
+    [Carlos]    Regla 12: Por proteccion de datos, solicitada la baja y eliminacion de un usuario deberan eliminarse todos sus datos. [TRGHelper_DelAllUserData]
     [Cris]      Regla 13: Los reinos unicamente podran ser declarados por usuarios administradores.
     [-----]     Regla 14: En caso de que no se asigne un legado, este campo estara vacio hasta su asignacion.
     [Mario]     Regla 15: En caso de que un rey caiga, se le sustuira por el legado y este ultimo quedara vacio hasta que se nombre otro. [SProc_RulerDeath]
