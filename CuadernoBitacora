@@ -33,3 +33,8 @@ CUADERNO BITACORA
 02-01-2020: Otra vez, pues no es que haya nada mucho mejor que hacer en navidades, se añaden las reglas de negocio y los procedimientos
             almacenados planteados al documento final describiendose en una mayor profundidad. Se realizan algunos cambios en el diagrama
             relacional respecto a nulos y el supuesto 10.
+07-01-2020: Por iniciativa propia, Cristian empieza a desarrollar el archivo .sql (DDL)
+08-01-2020: Se revisa y se añaden comentarios para la futura revision del apartado DDL de la base de datos.
+10-01-2020: Se recibe una serie de opiniones y comentarios del profesor en relacion a la documentacion entregada (Diseño, Reglas y PAs),
+            en base a estas observaciones se corrigen la participacion del vinculo [Legado], nomenclatura de los procedimientos y 
+            se repasan algunos de los planteados.
