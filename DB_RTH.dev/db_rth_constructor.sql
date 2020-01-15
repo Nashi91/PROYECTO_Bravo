@@ -32,10 +32,8 @@ CREATE TABLE USUARIOS
     fecha_nacimiento DATETIME,
     tipo TINYINT NOT NULL, --|Admin(2)|Mod(1)|Usr(0)|
         CONSTRAINT PrmKEY_USUARIOS PRIMARY KEY (usuario),
-        /*  TODO
-            -Constraint de provincia
-            -Constraint de contraseña
-        */
+        CONSTRAINT Chk_contrasena CHECK (contrasena LIKE '????????*'),
+        CONSTRAINT Chk_provincia CHECK (provincia IN ('Andalucía','Aragón','Asturias','Canarias','Baleares','Cantabria','Castilla y León','Castilla La Mancha','Valencia','Extremadura','Madrid','Galicia','Murcia','Navarra','Pais Vasco','La Rioja','Ceuta y melilla'))
 )
 /*
     FORUM-SIDE TABLES
@@ -48,10 +46,7 @@ CREATE TABLE TEMAS
     fecha_creacion DATETIME NOT NULL,
         CONSTRAINT PrmKEY_TEMAS PRIMARY KEY (codtema),
         CONSTRAINT ExtKEY_USUARIOS_TEMAS FOREIGN KEY (creado_por)
-            REFERENCES USUARIOS(usuario),
-        /* TODO
-            -Constraint de codtema
-        */
+            REFERENCES USUARIOS(usuario)
 )
     CREATE TABLE SUPERVISADOS
     (
@@ -86,9 +81,6 @@ CREATE TABLE CONVERSACIONES
             REFERENCES TEMAS(codtema),
         CONSTRAINT ExtKEY_USUARIOS_CONVERSACIONES FOREIGN KEY (creado_por)
             REFERENCES USUARIOS(usuario)
-        /* TODO
-            -Constraint de codtema
-        */
 )
 CREATE TABLE MENSAJES
 (
@@ -103,9 +95,6 @@ CREATE TABLE MENSAJES
             REFERENCES CONVERSACIONES(codtema,codconv),
         CONSTRAINT ExtKEY_USUARIOS_MENSAJES FOREIGN KEY (creado_por)
             REFERENCES USUARIOS(usuario)
-    /* TODO
-        -Constraint de codtema
-    */
 )
 /*
     LARP-SIDE TABLES
@@ -120,18 +109,16 @@ CREATE TABLE PERSONAJES
     genero VARCHAR(6),
     religion NVARCHAR(15),
     historia NVARCHAR(MAX),
-    dinero INT,
-    clase NVARCHAR(15),
-    magia NVARCHAR(10),
+    dinero INT DEFAULT 100,
+    clase NVARCHAR(15) DEFAULT 'Campesino',
+    magia NVARCHAR(10) DEFAULT 'No mago',
     reino NVARCHAR(35) NOT NULL, --ExtKEY_REINOS_PERSONAJES
         CONSTRAINT PrmKEY_PERSONAJES PRIMARY KEY (usuario),
         CONSTRAINT ExtKEY_USUARIOS_PERSONAJES FOREIGN KEY (usuario)
-            REFERENCES USUARIOS(usuario)
-    /*  TODO
-        -Constraint de raza, clase y magia (???)
-        -Default dinero 100 oros
-        -Default magia "No mago"
-    */
+            REFERENCES USUARIOS(usuario),
+        CONSTRAINT Chk_raza CHECK (raza IN ('Humano','Elfo','Orco','Mediano')),
+        CONSTRAINT Chk_clase CHECK (clase IN ('Picaro','Aventurero','Cazador','Guerrero','Paladin','Hechicero','Mago','Brujo','Alquimista','Barbaro','Campesino')),
+        CONSTRAINT Chk_magia CHECK (clase IN ('No mago','Aprendiz','Principiante','Abjuración','Conjuración','Divinación','Encantación','Evocación','Ilusión','Negromancia','Transmutación','Universal'))
 )
 CREATE TABLE REINOS
 (
@@ -152,31 +139,29 @@ CREATE TABLE REINOS
         CONSTRAINT ExtKEY_REINOS_PERSONAJES_REY FOREIGN KEY (rey)
             REFERENCES PERSONAJES(usuario),
         CONSTRAINT ExtKEY_REINOS_PERSNAJES_LEGADO FOREIGN KEY (legado)
-            REFERENCES PERSONAJES(usuario)
-    /* TODO
-        - Constraint de forma_gobierno (?¿)
-    */
+            REFERENCES PERSONAJES(usuario),
+        CONSTRAINT Chk_formagobierno CHECK (forma_gobierno IN ('República','Monarquia','Federación','Imperio'))
 )
     CREATE TABLE TERRITORIOS
     (
         nombre NVARCHAR(35) NOT NULL,
         topologia NVARCHAR(15) NOT NULL,
         reino NVARCHAR(25),
-        comida INT,
-        madera INT,
-        piedra INT,
-        hierro INT,
-        dinero INT,
-        edificios SMALLINT,
-        poblacion INT,
-        def TINYINT,
-        atk TINYINT,
+        comida INT DEFAULT 0,
+        madera INT DEFAULT 0,
+        piedra INT DEFAULT 0,
+        hierro INT DEFAULT 0,
+        dinero INT DEFAULT 0,
+        edificios SMALLINT DEFAULT 0,
+        poblacion INT DEFAULT 0,
+        def TINYINT DEFAULT 0,
+        atk TINYINT DEFAULT 0,
             CONSTRAINT PrmKEY_TERRITORIOS PRIMARY KEY (nombre),
             CONSTRAINT ExtKEY_REINOS_TERRITORIOS FOREIGN KEY (reino)
-                REFERENCES REINOS(nombre)
+                REFERENCES REINOS(nombre),
+            CONSTRAINT Chk_topologia CHECK (topologia IN (''))
         /* TODO
             -Constraint de topologia
-            -Default para los campos de Age of Empires
         */
     )
 /*
@@ -191,10 +176,8 @@ CREATE TABLE EVENTOS
     coste MONEY,
     fecha_inicio DATETIME NOT NULL,
     fecha_fin DATETIME,
-        CONSTRAINT PrmKEY_EVENTOS PRIMARY KEY (codevnt)
-    /* TODO
-        -Constraint de fechas inicio - fin
-    */
+        CONSTRAINT PrmKEY_EVENTOS PRIMARY KEY (codevnt),
+        CONSTRAINT Chk_fechaincio CHECK (fecha_inicio <= fecha_fin)
 )
     CREATE TABLE PARTICIPANTES
     (
@@ -232,6 +215,11 @@ CREATE RULE GENDER_GLOBAL AS
         @field IN ('Masculino','Femenino')
     )
 GO
+CREATE RULE CHK_codtema AS
+    (
+        @field LIKE '[0-9][0-9][A-Z][A-Z]'
+    )
+GO
 /*DEFAULTS*/
 CREATE DEFAULT DATE_TODAY AS 
     GETDATE()
@@ -241,6 +229,12 @@ CREATE DEFAULT BITFALSE AS
 GO
 -- GLOBAL CONSTRAINT / DEFAULT LINKAGE
 /*RULES*/
+EXEC SP_BINDRULE CHK_codtema, 'TEMAS.codtema'
+EXEC SP_BINDRULE CHK_codtema, 'SUPERVISADOS.codtema'
+EXEC SP_BINDRULE CHK_codtema, 'MODERADORES.codtema'
+EXEC SP_BINDRULE CHK_codtema, 'CONVERSACIONES.codtema'
+EXEC SP_BINDRULE CHK_codtema, 'MENSAJES.codtema'
+
 EXEC SP_BINDRULE NO_DATE_AFTER_TODAY, 'USUARIOS.fecha_nacimiento'
 EXEC SP_BINDRULE NO_DATE_AFTER_TODAY, 'TEMAS.fecha_creacion'
 EXEC SP_BINDRULE NO_DATE_AFTER_TODAY, 'CONVERSACIONES.fecha_creacion'
