@@ -17,7 +17,7 @@ IF NOT EXISTS (
 )
     CREATE DATABASE db_rth
 ELSE
-    PRINT 'CRITICAL ERROR, Database already exists.'
+    RAISERROR ( 'CRITICAL ERROR, Database already exists.',15,1)
 GO
 
 -- TABLE OBJECTS DEFINITION
