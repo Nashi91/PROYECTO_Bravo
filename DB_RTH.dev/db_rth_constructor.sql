@@ -33,7 +33,7 @@ CREATE TABLE USUARIOS
     tipo TINYINT NOT NULL, --|Admin(2)|Mod(1)|Usr(0)|
         CONSTRAINT PrmKEY_USUARIOS PRIMARY KEY (usuario),
         /*  TODO
-            -Constraint de provincia y genero
+            -Constraint de provincia
             -Constraint de contraseña
         */
 )
@@ -128,7 +128,6 @@ CREATE TABLE PERSONAJES
         CONSTRAINT ExtKEY_USUARIOS_PERSONAJES FOREIGN KEY (usuario)
             REFERENCES USUARIOS(usuario)
     /*  TODO
-        -Constraint de genero
         -Constraint de raza, clase y magia (???)
         -Default dinero 100 oros
         -Default magia "No mago"
@@ -228,6 +227,11 @@ CREATE RULE NO_DATE_AFTER_TODAY AS
         @field <= GETDATE()
     )
 GO
+CREATE RULE GENDER_GLOBAL AS
+    (
+        @field IN ('Masculino','Femenino')
+    )
+GO
 /*DEFAULTS*/
 CREATE DEFAULT DATE_TODAY AS 
     GETDATE()
@@ -241,6 +245,9 @@ EXEC SP_BINDRULE NO_DATE_AFTER_TODAY, 'USUARIOS.fecha_nacimiento'
 EXEC SP_BINDRULE NO_DATE_AFTER_TODAY, 'TEMAS.fecha_creacion'
 EXEC SP_BINDRULE NO_DATE_AFTER_TODAY, 'CONVERSACIONES.fecha_creacion'
 EXEC SP_BINDRULE NO_DATE_AFTER_TODAY, 'MENSAJES.fecha_creacion'
+
+EXEC SP_BINDRULE GENDER_GLOBAL, 'USUARIOS.genero'
+EXEC SP_BINDRULE GENDER_GLOBAL, 'PERSONAJES.genero'
 /*DEFAULTS*/
 EXEC SP_BINDEFAULT DATE_TODAY, 'TEMAS.fecha_creacion'
 EXEC SP_BINDEFAULT DATE_TODAY, 'CONVERSACIONES.fecha_creacion'
