@@ -33,7 +33,7 @@ CREATE TABLE USUARIOS
     tipo TINYINT NOT NULL, --|Admin(2)|Mod(1)|Usr(0)|
         CONSTRAINT PrmKEY_USUARIOS PRIMARY KEY (usuario),
         CONSTRAINT Chk_contrasena CHECK (contrasena LIKE '????????*'),
-        CONSTRAINT Chk_provincia CHECK (provincia IN ('Andalucía','Aragón','Asturias','Canarias','Baleares','Cantabria','Castilla y León','Castilla La Mancha','Valencia','Extremadura','Madrid','Galicia','Murcia','Navarra','Pais Vasco','La Rioja','Ceuta y melilla'))
+        CONSTRAINT Chk_provincia CHECK (provincia IN ('Andalucía','Aragón','Asturias','Canarias','Baleares','Cantabria','Castilla y León','Castilla La Mancha','Valencia','Extremadura','Madrid','Galicia','Murcia','Navarra','Pais Vasco','La Rioja','Ceuta y Melilla'))
 )
 /*
     FORUM-SIDE TABLES
@@ -159,10 +159,7 @@ CREATE TABLE REINOS
             CONSTRAINT PrmKEY_TERRITORIOS PRIMARY KEY (nombre),
             CONSTRAINT ExtKEY_REINOS_TERRITORIOS FOREIGN KEY (reino)
                 REFERENCES REINOS(nombre),
-            CONSTRAINT Chk_topologia CHECK (topologia IN (''))
-        /* TODO
-            -Constraint de topologia
-        */
+            CONSTRAINT Chk_topologia CHECK (topologia IN ('Llanura','Meseta','Estepa','Valle','Montañoso','Islas','Costero','Península','Acantilados'))
     )
 /*
     EVENT-SIDE TABLES
