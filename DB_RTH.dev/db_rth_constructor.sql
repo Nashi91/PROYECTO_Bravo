@@ -27,7 +27,7 @@ CREATE TABLE USUARIOS
     contrasena NVARCHAR(30) NOT NULL,
     correo_electronico NVARCHAR(50) NOT NULL,
     nick NVARCHAR(35) NOT NULL,
-    genero VARCHAR(6),
+    genero VARCHAR(9),
     provincia NVARCHAR(15),
     fecha_nacimiento DATETIME,
     tipo TINYINT NOT NULL, --|Admin(2)|Mod(1)|Usr(0)|
