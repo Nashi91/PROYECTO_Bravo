@@ -3,7 +3,9 @@
         Carlos Labiano Cerón / 2º GFS ASIR
           Centro integrado Cuatrovientos
                         v0.1
-                     14/01/2013
+                     14/01/2020
+                        v1.0
+                     16/01/2020
  ----------------------------------------------*/
 
 --  INIT
