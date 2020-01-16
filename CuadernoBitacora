@@ -38,5 +38,10 @@ CUADERNO BITACORA
 10-01-2020: Se recibe una serie de opiniones y comentarios del profesor en relacion a la documentacion entregada (Diseño, Reglas y PAs),
             en base a estas observaciones se corrigen la participacion del vinculo [Legado], nomenclatura de los procedimientos y 
             se repasan algunos de los planteados.
-13-04-2020: Mario y Cristian se encargan de revisar los comentarios del archivo DDL y proceden a realizar algunas modificaciones
+13-01-2020: Mario y Cristian se encargan de revisar los comentarios del archivo DDL y proceden a realizar algunas modificaciones
             en la creacion de tablas y las restricciones.
+14-01-2020: Se organiza y distribuye el trabajo siguiente entre los integrantes del grupo. Cristian y Mario se encargaran de lo relacionado
+            con Triggers y Procdimientos Almacneados y Carlos de la construccion de la base de datos (DDL). Supervisandose entre ellos,
+            se comienzan las tareas.
+16-01-2020: Carlos avanza el DDL en tiempos muertos, se terminan las restricciones y la definición de la tablas quedando por hacer la
+            creacion e inserccion de datos en las diferentes tablas.
