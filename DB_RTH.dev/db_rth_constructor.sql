@@ -2,9 +2,7 @@
     DATABSE CONSTRUCTOR | Reinos de Thalesia
         Carlos Labiano Cerón / 2º GFS ASIR
           Centro integrado Cuatrovientos
-                        v0.1
-                     14/01/2020
-                        v1.0
+                        v1.1
                      16/01/2020
  ----------------------------------------------*/
 
@@ -192,6 +190,9 @@ CREATE TABLE EVENTOS
 GO
 
 -- TABLE OBJECTS POST CREATE ALTERATION
+/* Unique index for USUARIOS.correo_electronico */
+CREATE UNIQUE INDEX UIx_correo
+ON USUARIOS (correo_electronico)
 /* ExtKEY_REINOS_PERSONAJES */
 ALTER TABLE PERSONAJES 
     ADD CONSTRAINT ExtKEY_REINOS_PERSONAJES
