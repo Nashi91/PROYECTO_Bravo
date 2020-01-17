@@ -64,7 +64,7 @@ VALUES  ('ryona','Xryona','Rion','Reyhan','Humano','Femenino',null,'La ultima wa
 INSERT INTO REINOS (nombre, lema, capital, descripcion, creado_por, forma_gobierno, rey, legado, religion, ejercito)
 VALUES  ('Imperio de Aifun','Haga la fuerza ley, pues si no caos todo sera lol','Naventia','FATE','carlos','Imperio','carlos','adarin','Aifunismo',12),
         ('Federación SQL','CREATE es nuestra fundación e INSERT nuestra construccón','Ciudad academia','Naciones construidas y unidas a traves de un par de batchs SQL','admin','Federación','mario','crisfc'),
-        ('Akademia','Avancemos todos juntos en nombre de la ciencia','Gariniostian','La republica que Xryona dirije con mano de hierro','admin','República','ryona',null,null,0),
+        ('Akademia','Avancemos todos juntos en nombre de la ciencia','Gariniostian','La republica que Xryona dirije con mano de hierro','admin','República','ryona',null,null,0)
     INSERT INTO TERRITORIOS (nombre, topologia, reino, comida, madera, piedra, hierro, dinero, edificios, poblacion, def, atk)
     VALUES  ('Ciudad academia','Islas','Akademia',300,200,232,145,71500,2345,50000,90,20),
             ('Naventia','Valle','Imperio de Aifun',0,0,0,0,0,0,2,0,250),
