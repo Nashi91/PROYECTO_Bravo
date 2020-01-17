@@ -40,11 +40,12 @@ VALUES  ('00AA','Reinos y Guerras','admin','2011-03-24'),
             ('crisfc','00AD'),
             ('carlos','11BA')
 INSERT INTO CONVERSACIONES (codconv, codtema, titulo, creado_por, fecha_creacion, bloqueado)
-VALUES  (),
-        (),
-        (),
-        (),
-        ()
+-- A ejecutar antes de la creacion del Trigger, se asumen datos correctos
+VALUES  (1,'00AA','Organizacion de las tropas del reino','mario','06-01-2019',0),
+        (2,'00AA','Re-organizacion del gobierno republicano','crisfc','03-08-2019',0),
+        (3,'00AA','Declaracion de guerra total a todos los hijos de ****','carlos','17-01-2020',1),
+        (1,'00AD','Hagamos la paz y no la guerra','ryona','16-01-2020',0),
+        (1,'11BA','1001 razones por las que adorar a Aizen','adarin','14-02-2019',1)
 INSERT INTO MENSAJES (codmsg, codtema, codconv, contenido, creado_por, fecha_creacion)
 VALUES  (),
         (),
