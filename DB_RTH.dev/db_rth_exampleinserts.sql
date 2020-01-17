@@ -12,11 +12,11 @@ GO
 
 -- EXAMPLE DATA INSERTS
 INSERT INTO USUARIOS (usuario, contrasena, correo_electronico, nick, genero, provincia, fecha_nacimiento, tipo)
-VALUES  (),
-        (),
-        (),
-        (),
-        ()
+VALUES  ('carlos','12345678','carlos@correo.es','Cruzadito','Masculino','Navarra','1999-04-16',2),
+        ('mario','12345678','mario@correo.es','BrasileiroMore','Masculino','Navarra','1999-09-24',1),
+        ('crisfc','12345678','cristian@correo.es','Crisfc98','Masculino','Navarra','1998-05-11',1),
+        ('ryona','12345678','xryona@myacademy.ft','XryonaThePacifier','Femenino','Madrid','2002-05-30',0),
+        ('adarin','12345678','adarin@aizenmind.inf','TheTrueWaifu','Femenino','Madrid','1915-12-30',0)
 /*
     FORUM-SIDE DATA
 */
