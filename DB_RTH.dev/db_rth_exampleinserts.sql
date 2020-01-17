@@ -28,17 +28,17 @@ VALUES  ('00AA','Reinos y Guerras','admin','2011-03-24'),
         ('00AD','Off-topic','admin','2011-03-24'),
         ('11BA','Shitposting General /stg/','carlos','2020-01-17')
     INSERT INTO SUPERVISADOS (usuario, codtema)
-    VALUES  (),
-            (),
-            (),
-            (),
-            ()
+    VALUES  ('ryona','00AD'),
+            ('adarin','11BA'),
+            ('mario','00AA'),
+            ('mario','00AB'),
+            ('crisfc','00AD')
     INSERT INTO MODERADORES (usuario, codtema)
-    VALUES  (),
-            (),
-            (),
-            (),
-            ()
+    VALUES  ('mario','00AA'),
+            ('mario','00AB'),
+            ('mario','0AC'),
+            ('crisfc','00AD'),
+            ('carlos','11BA')
 INSERT INTO CONVERSACIONES (codconv, codtema, titulo, creado_por, fecha_creacion, bloqueado)
 VALUES  (),
         (),
