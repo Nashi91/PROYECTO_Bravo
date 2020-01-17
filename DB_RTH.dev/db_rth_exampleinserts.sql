@@ -47,11 +47,11 @@ VALUES  (1,'00AA','Organizacion de las tropas del reino','mario','06-01-2019',0)
         (1,'00AD','Hagamos la paz y no la guerra','ryona','16-01-2020',0),
         (1,'11BA','1001 razones por las que adorar a Aizen','adarin','14-02-2019',1)
 INSERT INTO MENSAJES (codmsg, codtema, codconv, contenido, creado_por, fecha_creacion)
-VALUES  (),
-        (),
-        (),
-        (),
-        ()
+VALUES  (1,'00AA',1,'Viendo el movimiento de los diferentes reinos, creo que tenemos que organizar las tropas mejor, vieno lo que puede ocurrir.','mario','06-01-2019'),
+        (2,'00AA',1,'No te rayes marieria, os voy a destruir a todos como c a b r o n e s','crisfc','07-01-2019'),
+        (1,'00AD',1,'Esforcémonos día a día por hacer lo correcto, ayudar y proteger a la gente para convertir este mundo en un lugar mejor donde podamos vivir felices y orgullosos de nosotros mismos, por duro que sea el camino, seguiremos adelante, juntos','ryona','16-01-2020'),
+        (2,'00AD',1,'Madre mia, deja de globearnos de una vez P O R F A V O R','carlos','17-01-2020'),
+        (1,'00AA',3,'Su os vais a cagar cabrones, vais a moir tos','carlos','17-01-2020')
 /*
     LARP-SIDE TABLES
 */
