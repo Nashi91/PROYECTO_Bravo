@@ -95,8 +95,8 @@ CREATE TABLE MENSAJES
     creado_por NVARCHAR(15) NOT NULL,
     fecha_creacion DATETIME NOT NULL,
         CONSTRAINT PrmKEY_MENSAJES PRIMARY KEY (codmsg,codtema,codconv),
-        CONSTRAINT ExtKEY_CONVERSACIONES_MENSAJES FOREIGN KEY (codtema,codconv)
-            REFERENCES CONVERSACIONES(codtema,codconv),
+        CONSTRAINT ExtKEY_CONVERSACIONES_MENSAJES FOREIGN KEY (codconv,codtema)
+            REFERENCES CONVERSACIONES(codconv,codtema),
         CONSTRAINT ExtKEY_USUARIOS_MENSAJES FOREIGN KEY (creado_por)
             REFERENCES USUARIOS(usuario)
 )
