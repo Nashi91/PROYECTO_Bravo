@@ -7,5 +7,6 @@
     Chk_campo               ->  Restriccion común
     PrmKEY_tabla            ->  Restricción de clave primaria
     ExtKEY_tabla1_tablaN    ->  Restricción de clave externa
+    UIx_campo               ->  Indice unico
 
 */

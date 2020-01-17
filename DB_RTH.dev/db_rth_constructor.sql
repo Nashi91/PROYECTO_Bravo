@@ -2,8 +2,8 @@
     DATABSE CONSTRUCTOR | Reinos de Thalesia
         Carlos Labiano Cerón / 2º GFS ASIR
           Centro integrado Cuatrovientos
-                        v0.1
-                     14/01/2013
+                        v1.1
+                     16/01/2020
  ----------------------------------------------*/
 
 --  INIT
@@ -121,8 +121,8 @@ CREATE TABLE PERSONAJES
         CONSTRAINT ExtKEY_USUARIOS_PERSONAJES FOREIGN KEY (usuario)
             REFERENCES USUARIOS(usuario),
         CONSTRAINT Chk_raza CHECK (raza IN ('Humano','Elfo','Orco','Mediano')),
-        CONSTRAINT Chk_clase CHECK (clase IN ('Picaro','Aventurero','Cazador','Guerrero','Paladin','Hechicero','Mago','Brujo','Alquimista','Barbaro','Campesino')),
-        CONSTRAINT Chk_magia CHECK (clase IN ('No mago','Aprendiz','Principiante','Abjuración','Conjuración','Divinación','Encantación','Evocación','Ilusión','Negromancia','Transmutación','Universal'))
+        CONSTRAINT Chk_clase CHECK (clase IN ('Pícaro','Aventurero','Cazador','Guerrero','Paladín','Hechicero','Mago','Brujo','Alquimista','Bárbaro','Campesino')),
+        CONSTRAINT Chk_magia CHECK (clase IN ('No mago','Aprendiz','Principiante','Abjuración','Conjuración','Adivinación','Encantación','Evocación','Ilusión','Negromancia','Transmutación','Universal'))
 )
 CREATE TABLE REINOS
 (
@@ -144,7 +144,7 @@ CREATE TABLE REINOS
             REFERENCES PERSONAJES(usuario),
         CONSTRAINT ExtKEY_REINOS_PERSNAJES_LEGADO FOREIGN KEY (legado)
             REFERENCES PERSONAJES(usuario),
-        CONSTRAINT Chk_formagobierno CHECK (forma_gobierno IN ('República','Monarquia','Federación','Imperio'))
+        CONSTRAINT Chk_formagobierno CHECK (forma_gobierno IN ('República','Monarquía','Federación','Imperio'))
 )
     CREATE TABLE TERRITORIOS
     (
@@ -194,6 +194,9 @@ CREATE TABLE EVENTOS
 GO
 
 -- TABLE OBJECTS POST CREATE ALTERATION
+/* Unique index for USUARIOS.correo_electronico */
+CREATE UNIQUE INDEX UIx_correo
+ON USUARIOS (correo_electronico)
 /* ExtKEY_REINOS_PERSONAJES */
 ALTER TABLE PERSONAJES 
     ADD CONSTRAINT ExtKEY_REINOS_PERSONAJES
