@@ -74,15 +74,15 @@ VALUES  ('Imperio de Aifun','Haga la fuerza ley, pues si no caos todo sera lol',
 /*
     EVENT-SIDE TABLES
 */
-INSERT INTO EVENTOS (codevnt, nombre, ubicacion, detalles, coste, fecha_inicio, fecha_fin)
-VALUES  (),
-        (),
-        (),
-        (),
-        ()
+INSERT INTO EVENTOS (nombre, ubicacion, detalles, coste, fecha_inicio, fecha_fin)
+VALUES  ('Conquista del reino de Granada','Granada','Reconquista 2.0',20,'1482-01-02','1492-03-20'),
+        ('Kancolle','FATE','Ah shit, here we go again (t.Aizen)',0,'2019-11-03','2020-12-30'),
+        ('Encuentro General de la comunidad LARP','Pampona, Navarra','Encuentro de todos los apasionados por este hobby',15,'2020-06-12','2020-06-13'),
+        ('Asalto al castillo hinchable','Garinoain, Tafalla, Comunidad foral de Navarra','ACABAD CON ELLOOOOOOOOOOS!!!!',30,'2020-01-20','2020-01-30'),
+        ('NLP3 2020','Polideportivo de la UPNA','YEEEEEEEEEEEEEEEE BOIIIIIIIIIIIII',60,'2020-09-05',null)
     INSERT INTO PARTICIPANTES (usuario, codevnt, personaje)
-    VALUES  (),
-            (),
-            (),
-            (),
-            ()
+    VALUES  ('ryona',2,1),
+            ('adarin',2,1),
+            ('carlos',1,0),
+            ('mario',4,1),
+            ('crisfc',1,1)
