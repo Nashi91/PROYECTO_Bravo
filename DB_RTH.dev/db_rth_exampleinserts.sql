@@ -2,12 +2,16 @@
         EXAMPLE DATA | Reinos de Thalesia
         Carlos Labiano Cerón / 2º GFS ASIR
           Centro integrado Cuatrovientos
-                        v1.0
+                        v1.1
                      19/01/2020
  ----------------------------------------------*/
 
 -- INIT
 USE MASTER
+GO
+
+-- INIT DATABASE
+USE db_rth
 GO
 
 -- EXAMPLE DATA INSERTS
