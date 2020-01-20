@@ -45,3 +45,9 @@ CUADERNO BITACORA
             se comienzan las tareas.
 16-01-2020: Carlos avanza el DDL en tiempos muertos, se terminan las restricciones y la definición de la tablas quedando por hacer la
             creacion e inserccion de datos en las diferentes tablas.
+17-01-2020: Se continua el desarollo del DDL y del DCL por ambas partes, se arreglan una serie de fallos leves y criticos en el DDL
+            y se comienza la construccion de datos de ejemplo para su posterior uso en las pruebas de la base de datos.
+20-01-2020: Prosigue el la depuración del DDL, según van eliminandose errores aparecen otros y estos a su vez son solucionados. Se termina
+            con la ejecucion completa del constructor de la base de datos que resulta en lo esperado. A la hora de insertar los datos de
+            prueba se encuentran diferentes errores que van investigandose. Mientras, se continua con el desarollo de procidemientos y 
+            triggers el cual avanza en buen rumbo.
