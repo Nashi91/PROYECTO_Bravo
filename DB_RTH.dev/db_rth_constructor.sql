@@ -36,7 +36,8 @@ CREATE TABLE USUARIOS
     fecha_nacimiento DATETIME,
     tipo TINYINT NOT NULL, --|Admin(2)|Mod(1)|Usr(0)|
         CONSTRAINT PrmKEY_USUARIOS PRIMARY KEY (usuario),
-        CONSTRAINT Chk_contrasena CHECK (contrasena LIKE '????????*'),
+        CONSTRAINT Chk_contrasena CHECK (LEN(contrasena) >= 8), --LEN() devuelve la longitud(int) de una cadena de texto
+        /*CONSTRAINT Chk_contrasena CHECK (contrasena LIKE '???????*'),*/
         CONSTRAINT Chk_provincia CHECK (provincia IN ('Andalucía','Aragón','Asturias','Canarias','Baleares','Cantabria','Castilla y León','Castilla La Mancha','Valencia','Extremadura','Madrid','Galicia','Murcia','Navarra','Pais Vasco','La Rioja','Ceuta y Melilla'))
 )
 /*
