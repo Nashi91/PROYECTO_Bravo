@@ -17,20 +17,20 @@ GO
 -- EXAMPLE DATA INSERTS
 INSERT INTO USUARIOS (usuario, contrasena, correo_electronico, nick, genero, provincia, fecha_nacimiento, tipo)
 VALUES  ('admin','12345678','admin@localhost','admin',null,null,null,2),
-        ('carlos','12345678','carlos@correo.es','Cruzadito','Masculino','Navarra','1999-04-16',2),
-        ('mario','12345678','mario@correo.es','BrasileiroMore','Masculino','Navarra','1999-09-24',1),
-        ('crisfc','12345678','cristian@correo.es','Crisfc98','Masculino','Navarra','1998-05-11',1),
-        ('ryona','12345678','xryona@myacademy.ft','XryonaThePacifier','Femenino','Madrid','2002-05-30',0),
-        ('adarin','12345678','adarin@aizenmind.inf','TheTrueWaifu','Femenino','Madrid','1915-12-30',0)
+        ('carlos','12345678','carlos@correo.es','Cruzadito','Masculino','Navarra','19990416',2),
+        ('mario','12345678','mario@correo.es','BrasileiroMore','Masculino','Navarra','19990924',1),
+        ('crisfc','12345678','cristian@correo.es','Crisfc98','Masculino','Navarra','19980511',1),
+        ('ryona','12345678','xryona@myacademy.ft','XryonaThePacifier','Femenino','Madrid','20020530',0),
+        ('adarin','12345678','adarin@aizenmind.inf','TheTrueWaifu','Femenino','Madrid','19151230',0)
 /*
     FORUM-SIDE DATA
 */
 INSERT INTO TEMAS (codtema, titulo, creado_por, fecha_creacion)
-VALUES  ('00AA','Reinos y Guerras','admin','2011-03-24'),
-        ('00AB','Personajes y LARP','admin','2011-03-24'),
-        ('00AC','Eventos','admin','2011-03-24'),
-        ('00AD','Off-topic','admin','2011-03-24'),
-        ('11BA','Shitposting General /stg/','carlos','2020-01-17')
+VALUES  ('00AA','Reinos y Guerras','admin','20110324'),
+        ('00AB','Personajes y LARP','admin','20110324'),
+        ('00AC','Eventos','admin','20110324'),
+        ('00AD','Off-topic','admin','20110324'),
+        ('11BA','Shitposting General /stg/','carlos','20200117')
     INSERT INTO SUPERVISADOS (usuario, codtema)
     VALUES  ('ryona','00AD'),
             ('adarin','11BA'),
@@ -45,17 +45,17 @@ VALUES  ('00AA','Reinos y Guerras','admin','2011-03-24'),
             ('carlos','11BA')
 INSERT INTO CONVERSACIONES (codconv, codtema, titulo, creado_por, fecha_creacion, bloqueado)
 -- A ejecutar antes de la creacion del Trigger, se asumen datos correctos
-VALUES  (1,'00AA','Organizacion de las tropas del reino','mario','06-01-2019',0),
-        (2,'00AA','Re-organizacion del gobierno republicano','crisfc','03-08-2019',0),
-        (3,'00AA','Declaracion de guerra total a todos los hijos de ****','carlos','17-01-2020',1),
-        (1,'00AD','Hagamos la paz y no la guerra','ryona','16-01-2020',0),
-        (1,'11BA','1001 razones por las que adorar a Aizen','adarin','14-02-2019',1)
+VALUES  (1,'00AA','Organizacion de las tropas del reino','mario','20190106',0),
+        (2,'00AA','Re-organizacion del gobierno republicano','crisfc','20190803',0),
+        (3,'00AA','Declaracion de guerra total a todos los hijos de ****','carlos','20200117',1),
+        (1,'00AD','Hagamos la paz y no la guerra','ryona','20200116',0),
+        (1,'11BA','1001 razones por las que adorar a Aizen','adarin','20190214',1)
 INSERT INTO MENSAJES (codmsg, codtema, codconv, contenido, creado_por, fecha_creacion)
-VALUES  (1,'00AA',1,'Viendo el movimiento de los diferentes reinos, creo que tenemos que organizar las tropas mejor, vieno lo que puede ocurrir.','mario','06-01-2019'),
-        (2,'00AA',1,'No te rayes marieria','crisfc','07-01-2019'),
-        (1,'00AD',1,'Esforcémonos día a día por hacer lo correcto, ayudar y proteger a la gente para convertir este mundo en un lugar mejor donde podamos vivir felices y orgullosos de nosotros mismos, por duro que sea el camino, seguiremos adelante, juntos','ryona','16-01-2020'),
-        (2,'00AD',1,'Madre mia, deja de globearnos de una vez P O R F A V O R','carlos','17-01-2020'),
-        (1,'00AA',3,'Su os vais a cagar cabrones, vais a moir tos','carlos','17-01-2020')
+VALUES  (1,'00AA',1,'Viendo el movimiento de los diferentes reinos, creo que tenemos que organizar las tropas mejor, vieno lo que puede ocurrir.','mario','20190106'),
+        (2,'00AA',1,'No te rayes marieria','crisfc','20190107'),
+        (1,'00AD',1,'Esforcémonos día a día por hacer lo correcto, ayudar y proteger a la gente para convertir este mundo en un lugar mejor donde podamos vivir felices y orgullosos de nosotros mismos, por duro que sea el camino, seguiremos adelante, juntos','ryona','20201601'),
+        (2,'00AD',1,'Madre mia, deja de globearnos de una vez P O R F A V O R','carlos','20201701'),
+        (1,'00AA',3,'Su os vais a cagar cabrones, vais a moir tos','carlos','20201701')
 /*
     LARP-SIDE TABLES
 */
@@ -79,10 +79,10 @@ VALUES  ('Imperio de Aifun','Haga la fuerza ley, pues si no caos todo sera lol',
     EVENT-SIDE TABLES
 */
 INSERT INTO EVENTOS (nombre, ubicacion, detalles, coste, fecha_inicio, fecha_fin)
-VALUES  ('Conquista del reino de Granada','Granada','Reconquista 2.0',20,'1482-01-02','1492-03-20'),
-        ('Kancolle','FATE','Ah shit, here we go again (t.Aizen)',0,'2019-11-03','2020-12-30'),
-        ('Encuentro General de la comunidad LARP','Pampona, Navarra','Encuentro de todos los apasionados por este hobby',15,'2020-06-12','2020-06-13'),
-        ('Asalto al castillo hinchable','Garinoain, Tafalla, Comunidad foral de Navarra','ACABAD CON ELLOOOOOOOOOOS!!!!',30,'2020-01-20','2020-01-30'),
+VALUES  ('Conquista del reino de Granada','Granada','Reconquista 2.0',20,'148201-02','14920320'),
+        ('Kancolle','FATE','Ah shit, here we go again (t.Aizen)',0,'201911-03','20201230'),
+        ('Encuentro General de la comunidad LARP','Pampona, Navarra','Encuentro de todos los apasionados por este hobby',15,'20200612','20200613'),
+        ('Asalto al castillo hinchable','Garinoain, Tafalla, Comunidad foral de Navarra','ACABAD CON ELLOOOOOOOOOOS!!!!',30,'20200120','20200130'),
         ('NLP3 2020','Polideportivo de la UPNA','YEEEEEEEEEEEEEEEE BOIIIIIIIIIIIII',60,'2020-09-05',null)
     INSERT INTO PARTICIPANTES (usuario, codevnt, personaje)
     VALUES  ('ryona',2,1),
