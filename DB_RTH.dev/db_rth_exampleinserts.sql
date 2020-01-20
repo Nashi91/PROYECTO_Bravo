@@ -79,7 +79,7 @@ VALUES  ('Imperio de Aifun','Haga la fuerza ley, pues si no caos todo sera lol',
     EVENT-SIDE TABLES
 */
 INSERT INTO EVENTOS (nombre, ubicacion, detalles, coste, fecha_inicio, fecha_fin)
-VALUES  ('Conquista del reino de Granada','Granada','Reconquista 2.0',20,'1982012','19920320'),
+VALUES  ('Conquista del reino de Granada','Granada','Reconquista 2.0',20,'19820102','19920320'),
         ('Kancolle','FATE','Ah shit, here we go again (t.Aizen)',0,'20191103','20201230'),
         ('Encuentro General de la comunidad LARP','Pampona, Navarra','Encuentro de todos los apasionados por este hobby',15,'20200612','20200613'),
         ('Asalto al castillo hinchable','Garinoain, Tafalla, Comunidad foral de Navarra','ACABAD CON ELLOOOOOOOOOOS!!!!',30,'20200120','20200130'),
