@@ -2,7 +2,7 @@
     DATABSE CONSTRUCTOR | Reinos de Thalesia
         Carlos Labiano Cerón / 2º GFS ASIR
           Centro integrado Cuatrovientos
-                        v1.1
+                        v1.2
                      16/01/2020
  ----------------------------------------------*/
 
@@ -17,7 +17,7 @@ IF NOT EXISTS (
 )
     CREATE DATABASE db_rth
 ELSE
-    RAISERROR ( 'CRITICAL ERROR, Database already exists.',15,1)
+    RAISERROR ( 'CRITICAL ERROR, Database already exists.',20,1) WITH LOG
 GO
 
 -- INIT DATABASE
@@ -150,7 +150,7 @@ CREATE TABLE REINOS
     (
         nombre NVARCHAR(35) NOT NULL,
         topologia NVARCHAR(15) NOT NULL,
-        reino NVARCHAR(25),
+        reino NVARCHAR(35),
         comida INT DEFAULT 0,
         madera INT DEFAULT 0,
         piedra INT DEFAULT 0,
