@@ -46,7 +46,7 @@ CREATE TABLE USUARIOS
 CREATE TABLE TEMAS
 (
     codtema CHAR(4) NOT NULL, --Formato: 00AA
-    titulo NVARCHAR(20),
+    titulo NVARCHAR(75),
     creado_por NVARCHAR(15) NOT NULL,
     fecha_creacion DATETIME NOT NULL,
         CONSTRAINT PrmKEY_TEMAS PRIMARY KEY (codtema),
@@ -77,7 +77,7 @@ CREATE TABLE CONVERSACIONES
 (
     codconv INT NOT NULL,
     codtema CHAR(4) NOT NULL,
-    titulo NVARCHAR(30),
+    titulo NVARCHAR(75),
     creado_por NVARCHAR(15) NOT NULL,
     fecha_creacion DATETIME NOT NULL,
     bloqueado BIT, --No(0) Si(1)
@@ -111,7 +111,7 @@ CREATE TABLE PERSONAJES
     apellido1 NVARCHAR(30),
     apellido2 NVARCHAR(30),
     raza NVARCHAR(15),
-    genero VARCHAR(6),
+    genero VARCHAR(9),
     religion NVARCHAR(15),
     historia NVARCHAR(MAX),
     dinero INT DEFAULT 100,
@@ -123,12 +123,12 @@ CREATE TABLE PERSONAJES
             REFERENCES USUARIOS(usuario),
         CONSTRAINT Chk_raza CHECK (raza IN ('Humano','Elfo','Orco','Mediano')),
         CONSTRAINT Chk_clase CHECK (clase IN ('Pícaro','Aventurero','Cazador','Guerrero','Paladín','Hechicero','Mago','Brujo','Alquimista','Bárbaro','Campesino')),
-        CONSTRAINT Chk_magia CHECK (clase IN ('No mago','Aprendiz','Principiante','Abjuración','Conjuración','Adivinación','Encantación','Evocación','Ilusión','Negromancia','Transmutación','Universal'))
+        CONSTRAINT Chk_magia CHECK (magia IN ('No mago','Aprendiz','Principiante','Abjuración','Conjuración','Adivinación','Encantación','Evocación','Ilusión','Negromancia','Transmutación','Universal'))
 )
 CREATE TABLE REINOS
 (
     nombre NVARCHAR(35) NOT NULL,
-    lema NVARCHAR(20),
+    lema NVARCHAR(100),
     capital NVARCHAR(35) NOT NULL, --ExtKEY_REINOS_TERRITORIOS_CAPITAL
     descripcion NVARCHAR(MAX),
     creado_por NVARCHAR(15) NOT NULL,

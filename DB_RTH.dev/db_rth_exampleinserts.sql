@@ -40,7 +40,7 @@ VALUES  ('00AA','Reinos y Guerras','admin','20110324'),
     INSERT INTO MODERADORES (usuario, codtema)
     VALUES  ('mario','00AA'),
             ('mario','00AB'),
-            ('mario','0AC'),
+            ('mario','00AC'),
             ('crisfc','00AD'),
             ('carlos','11BA')
 INSERT INTO CONVERSACIONES (codconv, codtema, titulo, creado_por, fecha_creacion, bloqueado)
@@ -53,9 +53,9 @@ VALUES  (1,'00AA','Organizacion de las tropas del reino','mario','20190106',0),
 INSERT INTO MENSAJES (codmsg, codtema, codconv, contenido, creado_por, fecha_creacion)
 VALUES  (1,'00AA',1,'Viendo el movimiento de los diferentes reinos, creo que tenemos que organizar las tropas mejor, vieno lo que puede ocurrir.','mario','20190106'),
         (2,'00AA',1,'No te rayes marieria','crisfc','20190107'),
-        (1,'00AD',1,'Esforcémonos día a día por hacer lo correcto, ayudar y proteger a la gente para convertir este mundo en un lugar mejor donde podamos vivir felices y orgullosos de nosotros mismos, por duro que sea el camino, seguiremos adelante, juntos','ryona','20201601'),
-        (2,'00AD',1,'Madre mia, deja de globearnos de una vez P O R F A V O R','carlos','20201701'),
-        (1,'00AA',3,'Su os vais a cagar cabrones, vais a moir tos','carlos','20201701')
+        (1,'00AD',1,'Esforcémonos día a día por hacer lo correcto, ayudar y proteger a la gente para convertir este mundo en un lugar mejor donde podamos vivir felices y orgullosos de nosotros mismos, por duro que sea el camino, seguiremos adelante, juntos','ryona','20200116'),
+        (2,'00AD',1,'Madre mia, deja de globearnos de una vez P O R F A V O R','carlos','20200117'),
+        (1,'00AA',3,'Su os vais a cagar cabrones, vais a moir tos','carlos','20200117')
 /*
     LARP-SIDE TABLES
 */
@@ -65,10 +65,10 @@ VALUES  ('ryona','Xryona','Rion','Reyhan','Humano','Femenino',null,'La ultima wa
         ('carlos','Ricker(Fang)','De','Ravenford','Humano','Masculino','Aifunismo','Un chaval sin nada que perder',23,'Pícaro','No mago','Imperio de Aifun'),
         ('mario','Pedro','Do','Brasil','Elfo','Masculino','Ateo','P o r t u g a l es G R A N D E',3000000,'Alquimista','Negromancia','Federación SQL'),
         ('crisfc','Krispy','Karsperky','Kolcas','Humano','Masculino','Cristianismo','oof',10000000000,'Mago','Adivinación','Federación SQL')
-INSERT INTO REINOS (nombre, lema, capital, descripcion, creado_por, forma_gobierno, rey, legado, religion, ejercito)
-VALUES  ('Imperio de Aifun','Haga la fuerza ley, pues si no caos todo sera lol','Naventia','FATE','carlos','Imperio','carlos','adarin','Aifunismo',12),
-        ('Federación SQL','CREATE es nuestra fundación e INSERT nuestra construccón','Gariniostian','Naciones construidas y unidas a traves de un par de batchs SQL','admin','Federación','mario','crisfc','Cristianismo',3000),
-        ('Akademia','Avancemos todos juntos en nombre de la ciencia','Ciudad academia','La republica que Xryona dirije con mano de hierro','admin','República','ryona',null,null,0)
+INSERT INTO REINOS (nombre, lema, capital, descripcion, creado_por, forma_gobierno, rey, legado, contacto, religion, ejercito)
+VALUES  ('Imperio de Aifun','Haga la fuerza ley, pues si no caos todo sera lol','Naventia','FATE','carlos','Imperio','carlos','adarin','aifun@aizenmind.ai','Aifunismo',12),
+        ('Federación SQL','CREATE es nuestra fundación e INSERT nuestra construccón','Gariniostian','Naciones construidas y unidas a traves de un par de batchs SQL','admin','Federación','mario','crisfc','dropmylife@oof.es','Cristianismo',3000),
+        ('Akademia','Avancemos todos juntos en nombre de la ciencia','Ciudad academia','La republica que Xryona dirije con mano de hierro','admin','República','ryona',null,'rioni@fate.org',null,0)
     INSERT INTO TERRITORIOS (nombre, topologia, reino, comida, madera, piedra, hierro, dinero, edificios, poblacion, def, atk)
     VALUES  ('Ciudad academia','Islas','Akademia',300,200,232,145,71500,2345,50000,90,20),
             ('Naventia','Valle','Imperio de Aifun',0,0,0,0,0,0,2,0,250),
@@ -79,11 +79,11 @@ VALUES  ('Imperio de Aifun','Haga la fuerza ley, pues si no caos todo sera lol',
     EVENT-SIDE TABLES
 */
 INSERT INTO EVENTOS (nombre, ubicacion, detalles, coste, fecha_inicio, fecha_fin)
-VALUES  ('Conquista del reino de Granada','Granada','Reconquista 2.0',20,'148201-02','14920320'),
-        ('Kancolle','FATE','Ah shit, here we go again (t.Aizen)',0,'201911-03','20201230'),
+VALUES  ('Conquista del reino de Granada','Granada','Reconquista 2.0',20,'1982012','19920320'),
+        ('Kancolle','FATE','Ah shit, here we go again (t.Aizen)',0,'20191103','20201230'),
         ('Encuentro General de la comunidad LARP','Pampona, Navarra','Encuentro de todos los apasionados por este hobby',15,'20200612','20200613'),
         ('Asalto al castillo hinchable','Garinoain, Tafalla, Comunidad foral de Navarra','ACABAD CON ELLOOOOOOOOOOS!!!!',30,'20200120','20200130'),
-        ('NLP3 2020','Polideportivo de la UPNA','YEEEEEEEEEEEEEEEE BOIIIIIIIIIIIII',60,'2020-09-05',null)
+        ('NLP3 2020','Polideportivo de la UPNA','YEEEEEEEEEEEEEEEE BOIIIIIIIIIIIII',60,'20200905',null)
     INSERT INTO PARTICIPANTES (usuario, codevnt, personaje)
     VALUES  ('ryona',2,1),
             ('adarin',2,1),
