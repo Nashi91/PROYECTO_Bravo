@@ -5,7 +5,7 @@
                         v1.2
                      16/01/2020
  ----------------------------------------------*/
-
+/*!!!! COMENTAR A ALBERTO SOBRE LA SITUACION ENTRE [REINOS] Y [PERSONAJES] PARA LA INSERCCION DE DATOS !!!!*/
 --  INIT
 USE MASTER
 GO
