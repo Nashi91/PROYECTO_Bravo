@@ -60,21 +60,44 @@ VALUES  (1,'00AA',1,'Viendo el movimiento de los diferentes reinos, creo que ten
     LARP-SIDE TABLES
 */
 INSERT INTO PERSONAJES (usuario, nombre, apellido1, apellido2, raza, genero, religion, historia, dinero, clase, magia, reino)
-VALUES  ('ryona','Xryona','Rion','Reyhan','Humano','Femenino',null,'La ultima waifu de su dimensión',98420,'Aventurero','Universal','Akademia'),
-        ('adarin','Adarín',null,null,'Humano','Femenino','Aifunismo','La eterna waifu de Aizen',0,'Brujo','Ilusión','Imperio de Aifun'),
-        ('carlos','Ricker(Fang)','De','Ravenford','Humano','Masculino','Aifunismo','Un chaval sin nada que perder',23,'Pícaro','No mago','Imperio de Aifun'),
-        ('mario','Pedro','Do','Brasil','Elfo','Masculino','Ateo','P o r t u g a l es G R A N D E',3000000,'Alquimista','Negromancia','Federación SQL'),
-        ('crisfc','Krispy','Karsperky','Kolcas','Humano','Masculino','Cristianismo','oof',10000000000,'Mago','Adivinación','Federación SQL')
+VALUES  ('ryona','Xryona','Rion','Reyhan','Humano','Femenino',null,'La ultima waifu de su dimensión',98420,'Aventurero','Universal',null),
+        ('adarin','Adarín',null,null,'Humano','Femenino','Aifunismo','La eterna waifu de Aizen',0,'Brujo','Ilusión',null),
+        ('carlos','Ricker(Fang)','De','Ravenford','Humano','Masculino','Aifunismo','Un chaval sin nada que perder',23,'Pícaro','No mago',null),
+        ('mario','Pedro','Do','Brasil','Elfo','Masculino','Ateo','P o r t u g a l es G R A N D E',3000000,'Alquimista','Negromancia',null),
+        ('crisfc','Krispy','Karsperky','Kolcas','Humano','Masculino','Cristianismo','oof',1000000000,'Mago','Adivinación',null)
+INSERT INTO TERRITORIOS (nombre, topologia, reino, comida, madera, piedra, hierro, dinero, edificios, poblacion, def, atk)
+VALUES  ('Ciudad academia','Islas',null,300,200,232,145,71500,2345,50000,90,20),
+        ('Naventia','Valle',null,0,0,0,0,0,0,2,0,250),
+        ('Gariniostian','Montañoso',null,1,2,10,0,100,3,2,3,12),
+        ('Nexo','Meseta',null,20000,2245,3125,2374,1788,2547,2354678,100,100),
+        ('Itoiz','Llanura',null,300,100,125,0,0,0,0,10,30)
 INSERT INTO REINOS (nombre, lema, capital, descripcion, creado_por, forma_gobierno, rey, legado, contacto, religion, ejercito)
 VALUES  ('Imperio de Aifun','Haga la fuerza ley, pues si no caos todo sera lol','Naventia','FATE','carlos','Imperio','carlos','adarin','aifun@aizenmind.ai','Aifunismo',12),
         ('Federación SQL','CREATE es nuestra fundación e INSERT nuestra construccón','Gariniostian','Naciones construidas y unidas a traves de un par de batchs SQL','admin','Federación','mario','crisfc','dropmylife@oof.es','Cristianismo',3000),
         ('Akademia','Avancemos todos juntos en nombre de la ciencia','Ciudad academia','La republica que Xryona dirije con mano de hierro','admin','República','ryona',null,'rioni@fate.org',null,0)
-    INSERT INTO TERRITORIOS (nombre, topologia, reino, comida, madera, piedra, hierro, dinero, edificios, poblacion, def, atk)
-    VALUES  ('Ciudad academia','Islas','Akademia',300,200,232,145,71500,2345,50000,90,20),
-            ('Naventia','Valle','Imperio de Aifun',0,0,0,0,0,0,2,0,250),
-            ('Gariniostian','Montañoso','Federación SQL',1,2,10,0,100,3,2,3,12),
-            ('Nexo','Meseta','Imperio de Aifun',20000,2245,3125,2374,1788,2547,2354678,100,100),
-            ('Itoiz','Llanura',null,300,100,125,0,0,0,0,10,30)
+/* ASSIGN KINGDOMS TO CHARACTERS */
+UPDATE PERSONAJES
+	SET reino = 'Akademia'
+	WHERE usuario = 'ryona'
+UPDATE PERSONAJES
+	SET reino = 'Imperio de Aifun'
+	WHERE usuario IN ('adarin','carlos')
+UPDATE PERSONAJES
+	SET reino = 'Imperio de Aifun'
+	WHERE usuario = 'carlos'
+UPDATE PERSONAJES
+	SET reino = 'Federación SQL'
+	WHERE usuario IN ('mario','crisfc')
+/* ASSIGN KINGDOMS TO TERRITORIES */
+UPDATE TERRITORIOS
+	SET reino = 'Akademia'
+	WHERE nombre = 'Ciudad academia'
+UPDATE TERRITORIOS
+	SET reino = 'Imperio de Aifun'
+	WHERE nombre IN ('Naventia','Nexo')
+UPDATE TERRITORIOS
+	SET reino = 'Federación SQL'
+	WHERE nombre = 'Gariniostian'
 /*
     EVENT-SIDE TABLES
 */
