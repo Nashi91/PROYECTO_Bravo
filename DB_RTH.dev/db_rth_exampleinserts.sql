@@ -113,3 +113,7 @@ VALUES  ('Conquista del reino de Granada','Granada','Reconquista 2.0',20,'198201
             ('carlos',1,0),
             ('mario',4,1),
             ('crisfc',1,1)
+
+-- SPECIAL DATA INSERTS
+INSERT INTO USUARIOS -- Usuario por el cual se sustituyen los datos dada la eliminacion de un usuario real
+VALUES ('DELETED','WcD6avBRLCXyrS8V','deleted@localhost','DELETED',null,null,null,2)
