@@ -5,7 +5,6 @@
                         v1.2
                      16/01/2020
  ----------------------------------------------*/
-/*!!!! COMENTAR A ALBERTO SOBRE LA SITUACION ENTRE [REINOS] Y [PERSONAJES] PARA LA INSERCCION DE DATOS !!!!*/
 --  INIT
 USE MASTER
 GO
@@ -116,8 +115,8 @@ CREATE TABLE PERSONAJES
     historia NVARCHAR(MAX),
     dinero INT DEFAULT 100,
     clase NVARCHAR(15) DEFAULT 'Campesino',
-    magia NVARCHAR(10) DEFAULT 'No mago',
-    reino NVARCHAR(35) NOT NULL, --ExtKEY_REINOS_PERSONAJES
+    magia NVARCHAR(15) DEFAULT 'No mago',
+    reino NVARCHAR(35) --ExtKEY_REINOS_PERSONAJES
         CONSTRAINT PrmKEY_PERSONAJES PRIMARY KEY (usuario),
         CONSTRAINT ExtKEY_USUARIOS_PERSONAJES FOREIGN KEY (usuario)
             REFERENCES USUARIOS(usuario),
@@ -172,8 +171,8 @@ CREATE TABLE REINOS
 CREATE TABLE EVENTOS
 (
     codevnt INT IDENTITY(1,1) NOT NULL,
-    nombre NVARCHAR(35) NOT NULL,
-    ubicacion NVARCHAR(40),
+    nombre NVARCHAR(50) NOT NULL,
+    ubicacion NVARCHAR(100),
     detalles NVARCHAR(MAX),
     coste MONEY,
     fecha_inicio DATETIME NOT NULL,
