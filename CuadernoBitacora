@@ -51,3 +51,5 @@ CUADERNO BITACORA
             con la ejecucion completa del constructor de la base de datos que resulta en lo esperado. A la hora de insertar los datos de
             prueba se encuentran diferentes errores que van investigandose. Mientras, se continua con el desarollo de procidemientos y 
             triggers el cual avanza en buen rumbo.
+21-01-2020: Se corrige el problema critico presente en la estructura de la base de datos que impide la inserccion de los datos de ejemplo,
+            por otra parte se terminan varios de los triggersi inicialmente planteados y se prosigue con su desarollo.
