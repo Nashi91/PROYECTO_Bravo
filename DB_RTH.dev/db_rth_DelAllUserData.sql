@@ -21,6 +21,9 @@ AS
     SET @usrlogin = (SELECT usuario FROM deleted)
 
     EXEC TRGHelper_DelAllUserData @usrlogin
+
+    DELETE FROM USUARIOS
+    WHERE usuario = @usrlogin
 GO
 -- [DelAllUserData] PROCEDURE CREATION
 CREATE PROCEDURE TRGHelper_DelAllUserData
@@ -52,11 +55,11 @@ AS
                 WHERE rey = legado OR legado = @usrlogin
         END
     -- Limpieza del personaje
-    EXEC SP_PlayerCharDeath @usrlogin
+    /*EXEC SP_PlayerCharDeath @usrlogin -- WORK IN PROGRESS*/
     DELETE FROM PERSONAJES
         WHERE usuario = @usrlogin
     -- Sentencias a ejecutar si el usuario es moderador
-    IF @usrtype = 1
+    IF @usrtype >= 1
         BEGIN
             DELETE FROM MODERADORES
                 WHERE usuario = @usrlogin
@@ -72,6 +75,9 @@ AS
                 WHERE creado_por = @usrlogin
         END
     -- Eliminación del usuario
-    DELETE FROM USUARIOS
-    WHERE usuario = @usrlogin
+    /* TODO
+        -> Hacer ejecucion de la siguiente linea unicamente si es llamado por el TRG y no el usuario
+    */
+    /*DELETE FROM USUARIOS
+    WHERE usuario = @usrlogin*/
 GO
