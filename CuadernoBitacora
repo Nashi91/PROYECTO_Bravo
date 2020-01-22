@@ -52,4 +52,7 @@ CUADERNO BITACORA
             prueba se encuentran diferentes errores que van investigandose. Mientras, se continua con el desarollo de procidemientos y 
             triggers el cual avanza en buen rumbo.
 21-01-2020: Se corrige el problema critico presente en la estructura de la base de datos que impide la inserccion de los datos de ejemplo,
-            por otra parte se terminan varios de los triggersi inicialmente planteados y se prosigue con su desarollo.
+            por otra parte se terminan varios de los triggers inicialmente planteados y se prosigue con su desarollo. Por parte de Carlos
+            se termina toda su sección del trabajo.
+22-01-2020: Mario y Cristian continuan realizando los triggers y procedimientos habiendo acabado ya varios, se aprovecha para revisar la
+            correcta logica y sintaxis de estos.
