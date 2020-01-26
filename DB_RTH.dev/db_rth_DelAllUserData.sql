@@ -8,9 +8,6 @@
 -- INIT DATABASE
 USE db_rth
 GO
-/*  TODO
-    -> Combinacion de este TRIGGER con el de muerte de rey, ver WORK IN PROGRESS
-*/
 
 -- [DelAllUserData] + RULE 11 TRIGGER CREATION
 CREATE TRIGGER TRGIn_UserDelete ON USUARIOS
@@ -27,7 +24,7 @@ AS
             DECLARE @usrlogin NVARCHAR(15)
             SET @usrlogin = (SELECT usuario FROM deleted)
         
-            EXEC TRGHelper_DelAllUserData @usrlogin
+            EXEC TRGHelper_DelAllUserData @usrlogin, 1
         
             DELETE FROM USUARIOS
             WHERE usuario = @usrlogin
@@ -35,7 +32,8 @@ AS
 GO
 -- [DelAllUserData] PROCEDURE CREATION
 CREATE PROCEDURE TRGHelper_DelAllUserData
-    @usrlogin NVARCHAR(15) -- Login del usuario (USUARIOS.usuario)
+    @usrlogin NVARCHAR(15), -- Login del usuario (USUARIOS.usuario)
+    @mode BIT = 0 -- (0) Llamado por usuario, (1) Llamado por Trigger
 AS
     DECLARE @usrtype TINYINT -- Tipo del usuario
     SET @usrtype = (SELECT U.tipo FROM USUARIOS U WHERE U.usuario = @usrlogin)
@@ -51,19 +49,7 @@ AS
     UPDATE MENSAJES
         SET creado_por = 'DELETED'
         WHERE creado_por = @usrlogin
-    -- Sentencias a ejecutar si su personaje es rey o legado
-    IF EXISTS (SELECT * FROM REINOS R WHERE R.rey = @usrlogin OR R.legado = @usrlogin)
-        BEGIN
-            UPDATE REINOS
-                SET rey = legado
-                WHERE rey = @usrlogin
-            /*EXEC SProc_RulerDeath -- WORK IN PROGRESS*/
-            UPDATE REINOS
-                SET legado = null
-                WHERE rey = legado OR legado = @usrlogin
-        END
     -- Limpieza del personaje
-    /*EXEC SP_PlayerCharDeath @usrlogin -- WORK IN PROGRESS*/
     DELETE FROM PERSONAJES
         WHERE usuario = @usrlogin
     -- Sentencias a ejecutar si el usuario es moderador
@@ -82,10 +68,8 @@ AS
                 SET creado_por = 'DELETED'
                 WHERE creado_por = @usrlogin
         END
-    -- Eliminación del usuario
-    /* TODO
-        -> Hacer ejecucion de la siguiente linea unicamente si es llamado por el TRG y no el usuario
-    */
-    /*DELETE FROM USUARIOS
-    WHERE usuario = @usrlogin*/
+    -- Eliminación del usuario si es llamado por usuario (Modo no trigger)
+    IF @mode = 1
+        DELETE FROM USUARIOS
+        WHERE usuario = @usrlogin
 GO
