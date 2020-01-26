@@ -60,9 +60,9 @@ REGLAS DE NEGOCIO:
     [-----]     Regla 7: El correo electronico que proporcione el usuario debe ser unico, no puede haber dos usuarios con una misma direccion.
     [-----]     Regla 8: La contraseña de un usuario debera ser como minimo de 8 caracteres.
     [-----]     Regla 9: El codigo de tema debera de poseer el siguiente formato: 00AA.
-    [Cris]      Regla 10: La fecha de fin de un evento debera ser siempre posterior respetando un minimo de un dia respecto a la fecha de inicio
-    [Cris]      Regla 11: Los usuarios administradores nunca pueden ser eliminados.
+    [OK] [Cris/Carlos]      Regla 10: La fecha de fin de un evento debera ser siempre posterior respetando un minimo de un dia respecto a la fecha de inicio
+    [OK] [Cris]      Regla 11: Los usuarios administradores nunca pueden ser eliminados.
     [OK] [Carlos]    Regla 12: Por proteccion de datos, solicitada la baja y eliminacion de un usuario deberan eliminarse todos sus datos. [TRGHelper_DelAllUserData]
-    [Cris]      Regla 13: Los reinos unicamente podran ser declarados por usuarios administradores.
+    [OK] [Cris]      Regla 13: Los reinos unicamente podran ser declarados por usuarios administradores.
     [-----]     Regla 14: En caso de que no se asigne un legado, este campo estara vacio hasta su asignacion.
     [OK] [Mario]     Regla 15: En caso de que un rey caiga, se le sustuira por el legado y este ultimo quedara vacio hasta que se nombre otro. [SProc_RulerDeath]
