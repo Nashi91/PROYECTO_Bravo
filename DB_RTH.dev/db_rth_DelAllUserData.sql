@@ -9,21 +9,29 @@
 USE db_rth
 GO
 /*  TODO
-    -> Combinacion de este TRIGGER con el de que no se puedan eliminar usuarios administradores
     -> Combinacion de este TRIGGER con el de muerte de rey, ver WORK IN PROGRESS
 */
 
--- [DelAllUserData] TRIGGER CREATION
+-- [DelAllUserData] + RULE 11 TRIGGER CREATION
 CREATE TRIGGER TRGIn_UserDelete ON USUARIOS
 INSTEAD OF DELETE
 AS
-    DECLARE @usrlogin NVARCHAR(15)
-    SET @usrlogin = (SELECT usuario FROM deleted)
-
-    EXEC TRGHelper_DelAllUserData @usrlogin
-
-    DELETE FROM USUARIOS
-    WHERE usuario = @usrlogin
+    /* Cristian */
+    IF (SELECT TIPO FROM DELETED) = 2
+        BEGIN
+            PRINT 'NO SE PUEDEN ELIMINAR USUARIOS ADMINISTRADORES'
+        END
+    ELSE
+    /* Carlos */
+        BEGIN
+            DECLARE @usrlogin NVARCHAR(15)
+            SET @usrlogin = (SELECT usuario FROM deleted)
+        
+            EXEC TRGHelper_DelAllUserData @usrlogin
+        
+            DELETE FROM USUARIOS
+            WHERE usuario = @usrlogin
+        END
 GO
 -- [DelAllUserData] PROCEDURE CREATION
 CREATE PROCEDURE TRGHelper_DelAllUserData
