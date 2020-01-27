@@ -2,8 +2,8 @@
     DATABSE CONSTRUCTOR | Reinos de Thalesia
         Carlos Labiano Cerón / 2º GFS ASIR
           Centro integrado Cuatrovientos
-                        v1.5
-                     21/01/2020
+                        v1.6
+                     27/01/2020
  ----------------------------------------------*/
 --  INIT
 USE MASTER
@@ -33,10 +33,9 @@ CREATE TABLE USUARIOS
     genero VARCHAR(9),
     provincia NVARCHAR(15),
     fecha_nacimiento DATETIME,
-    tipo TINYINT NOT NULL, --|Admin(2)|Mod(1)|Usr(0)|
+    tipo TINYINT NOT NULL, --|Administrador(2)|Moderador(1)|Usuario normal(0)|
         CONSTRAINT PrmKEY_USUARIOS PRIMARY KEY (usuario),
         CONSTRAINT Chk_contrasena CHECK (LEN(contrasena) >= 8), --LEN() devuelve la longitud(int) de una cadena de texto
-        /*CONSTRAINT Chk_contrasena CHECK (contrasena LIKE '???????*'),*/
         CONSTRAINT Chk_provincia CHECK (provincia IN ('Andalucía','Aragón','Asturias','Canarias','Baleares','Cantabria','Castilla y León','Castilla La Mancha','Valencia','Extremadura','Madrid','Galicia','Murcia','Navarra','Pais Vasco','La Rioja','Ceuta y Melilla'))
 )
 /*
@@ -79,7 +78,7 @@ CREATE TABLE CONVERSACIONES
     titulo NVARCHAR(75),
     creado_por NVARCHAR(15) NOT NULL,
     fecha_creacion DATETIME NOT NULL,
-    bloqueado BIT, --No(0) Si(1)
+    bloqueado BIT, --|No(0)|Si(1)|
         CONSTRAINT PrmKEY_CONVERSACIONES PRIMARY KEY (codconv,codtema),
         CONSTRAINT ExtKEY_TEMAS_CONVERSACIONES FOREIGN KEY (codtema)
             REFERENCES TEMAS(codtema),
@@ -178,13 +177,13 @@ CREATE TABLE EVENTOS
     fecha_inicio DATETIME NOT NULL,
     fecha_fin DATETIME,
         CONSTRAINT PrmKEY_EVENTOS PRIMARY KEY (codevnt),
-        CONSTRAINT Chk_fechaincio CHECK (fecha_inicio <= fecha_fin)
+        CONSTRAINT Chk_fechainicio CHECK (fecha_inicio <= fecha_fin)
 )
     CREATE TABLE PARTICIPANTES
     (
         usuario NVARCHAR(15) NOT NULL,
         codevnt INT NOT NULL,
-        personaje BIT NOT NULL, -- no utiliza(0), si utiliza(1)
+        personaje BIT NOT NULL, --|No utiliza(0)|Si utiliza(1)|
             CONSTRAINT PrmKEY_PARTICIPANTES PRIMARY KEY (usuario),
             CONSTRAINT ExtKEY_USUARIOS_PARTICIPANTES FOREIGN KEY (usuario)
                 REFERENCES USUARIOS(usuario),
@@ -260,9 +259,8 @@ GO
 /*
     --- [Mario] ---
 */
---REGLA 1:
-
-CREATE TRIGGER REGLA1 ON TEMAS
+--REGLA 1: Un usuario unicamente podra crear temas si es un administrador
+CREATE TRIGGER TRGIn_AdmPrivilege ON TEMAS
 INSTEAD OF INSERT
 AS
 	IF (SELECT TIPO FROM USUARIOS WHERE usuario=(SELECT creado_por FROM inserted))=2
@@ -279,9 +277,8 @@ para ello mediante un trigger que se lanzará tras intentar añadir registros a 
 que intenta crear un nuevo tema "sea de tipo administrador", si lo es se realiza la operación pero si no se envía un 
 mensaje de error.
 */
---REGLA 2:
-
-CREATE TRIGGER REGLA2 ON MODERADORES
+--REGLA 2: Solo si un usuario es moderador podra moderar temas
+CREATE TRIGGER TRGIn_ModPrivilege ON MODERADORES
 INSTEAD OF INSERT
 AS
 	IF (SELECT TIPO FROM USUARIOS WHERE usuario=(SELECT usuario FROM inserted))>=1
@@ -302,9 +299,9 @@ operación pero si no se envía un mensaje de error.
 /*
     --- [Mario + Carlos] ---
 */
---Regla 3: El codigo de las conversaciones sera igual al numero de la conversacion dentro de su correspondiente tema. [TRGHelper_GenWeakCode]
+--REGLA 3: El codigo de las conversaciones sera igual al numero de la conversacion dentro de su correspondiente tema. [TRGHelper_GenWeakCode]
 
-CREATE TRIGGER REGLA3 ON CONVERSACIONES
+CREATE TRIGGER TRGIn_WeakCode ON CONVERSACIONES
 INSTEAD OF INSERT
 AS
     DECLARE @gencodconv INT
@@ -321,9 +318,9 @@ AS
          (SELECT bloqueado FROM inserted)
     )
 GO
---Regla 4: El codigo de los mensajes sera igual al numero del mensaje dentro de su correspondiente conversacion.      [^]
+--REGLA 4: El codigo de los mensajes sera igual al numero del mensaje dentro de su correspondiente conversacion.      [^]
 
-CREATE TRIGGER REGLA4 ON MENSAJES
+CREATE TRIGGER TRGIn_WeakCode ON MENSAJES
 INSTEAD OF INSERT
 AS
     DECLARE @gencodmsg INT
@@ -340,7 +337,7 @@ AS
         (SELECT fecha_creacion FROM inserted)
     )
 GO
--- Regla 4 y 5: Procedimiento TRGHelper_GenWeakCode que genera los codigos
+--REGLA 4 + 5: Procedimiento TRGHelper_GenWeakCode que genera los codigos
 CREATE PROCEDURE TRGHelper_GenWeakCode
     @codtema CHAR(4),
     @codconv INT,
@@ -368,8 +365,8 @@ GO
 /*
     --- [Cristian] ---
 */
--- REGLA 5: En caso de que un personaje muera, debera de ser eliminado del registro y almacenarse en un registro a parte. [TRGHelper_PlayerCharDeath]
-CREATE TRIGGER TRGHelper_PlayerCharDeath ON PERSONAJES
+--REGLA 5: En caso de que un personaje muera, debera de ser eliminado del registro y almacenarse en un registro a parte. [TRGHelper_PlayerCharDeath]
+CREATE TRIGGER TRGIn_PlayerCharDeath ON PERSONAJES
 INSTEAD OF DELETE
 AS
 -- Se hace una comprobación de si el personaje existe en dicha tabla.
@@ -417,8 +414,8 @@ GO
 /*
     --- [Carlos] ---
 */
--- REGLA 10: La fecha de fin de un evento debera ser siempre posterior respetando un minimo de un dia respecto a la fecha de inicio
-CREATE TRIGGER EVENTS_DATES ON EVENTOS
+--REGLA 10: La fecha de fin de un evento debera ser siempre posterior respetando un minimo de un dia respecto a la fecha de inicio
+CREATE TRIGGER TRGIn_EndDateDiff ON EVENTOS
 INSTEAD OF UPDATE
 AS
 	IF (SELECT FECHA_FIN FROM DELETED) = (SELECT FECHA_FIN FROM INSERTED) AND 
@@ -452,8 +449,8 @@ GO
 /*
     --- [Cristian] ---
 */
--- REGLA 13: Los reinos unicamente podran ser declarados por usuarios administradores
-CREATE TRIGGER KINGDOM_ROOTS ON REINOS
+--REGLA 13: Los reinos unicamente podran ser declarados por usuarios administradores
+CREATE TRIGGER TRGIn_AdmPrivilege ON REINOS
 INSTEAD OF INSERT
 -- Hacemos una comprobación de que el usuario sea root o no... Si no lo es no puede declarar los reinos
 AS
@@ -483,8 +480,7 @@ GO
 /*
     --- [Mario] ---
 */
---REGLA 15:
-
+--REGLA 15: En caso de que un rey caiga, se le sustuira por el legado y este ultimo quedara vacio hasta que se nombre otro. [SProc_RulerDeath]
 CREATE PROCEDURE [SProc_RulerDeath] 
 @OLDKING NVARCHAR(15)
 AS
