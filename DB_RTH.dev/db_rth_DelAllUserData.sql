@@ -2,8 +2,8 @@
     SP+TRG DelAllUserData | Reinos de Thalesia
         Carlos Labiano Cerón / 2º GFS ASIR
           Centro integrado Cuatrovientos
-                        v0.5
-                     22/01/2020
+                        v1.2
+                     27/01/2020
  ----------------------------------------------*/
 -- INIT DATABASE
 USE db_rth
