@@ -69,7 +69,7 @@ AS
                 WHERE creado_por = @usrlogin
         END
     -- Eliminación del usuario si es llamado por usuario (Modo no trigger)
-    IF @mode = 1
+    IF @mode = 0
         DELETE FROM USUARIOS
         WHERE usuario = @usrlogin
 GO
