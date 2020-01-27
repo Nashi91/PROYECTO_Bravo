@@ -73,3 +73,5 @@ AS
         DELETE FROM USUARIOS
         WHERE usuario = @usrlogin
 GO
+
+-- EXEC TRGHelper_DelAllUserData 'usuario'

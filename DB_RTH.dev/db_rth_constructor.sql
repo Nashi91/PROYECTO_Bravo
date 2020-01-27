@@ -453,6 +453,7 @@ AS
 	    SET REINO = NULL
 	WHERE TERRITORIOS.REINO = @KINGDOM_DEAD
 GO
+-- EXEC SProc_KngdmDestroyed 'reino'
 /*
     --- [Mario] ---
 */
@@ -471,7 +472,7 @@ AS
 	UPDATE REINOS
 	    SET legado=NULL
 	WHERE rey=@NEWKING
--- EXEC [SProc_RulerDeath] ''
+-- EXEC [SProc_RulerDeath] 'rey'
 /*
 EXPLICACIÓN: en este caso necesitamos un procedimiento que "elimine" el rey caído y lo sustituya por su 
 correspondiente legado, para ello declaramos una variable en la que se almacenará el rey a sustituir y 
