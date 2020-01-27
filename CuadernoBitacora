@@ -58,3 +58,6 @@ CUADERNO BITACORA
             correcta logica y sintaxis de estos.
 24-01-2020: Con sus apartados casi terminados, se comienza una completa revision de los triggers y procedimientos almacenados, se van
             corrigiendo errores y repasando algunas logicas de estos.
+26-01-2020: Carlos continua la revisión en casa, se fusionan los archivos SQL con el archivo principal y se termina la implementación de la
+            regla 10. Se modifican algunos procedimientos y triggers al estar terminadas sus dependencias. Se ajustan indentaciones para
+            mejorar la lectura del codigo.            
