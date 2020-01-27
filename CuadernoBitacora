@@ -60,4 +60,6 @@ CUADERNO BITACORA
             corrigiendo errores y repasando algunas logicas de estos.
 26-01-2020: Carlos continua la revisión en casa, se fusionan los archivos SQL con el archivo principal y se termina la implementación de la
             regla 10. Se modifican algunos procedimientos y triggers al estar terminadas sus dependencias. Se ajustan indentaciones para
-            mejorar la lectura del codigo.            
+            mejorar la lectura del codigo.
+27-01-2020: Conjuntamente Mario y Carlos desarrollan el trigger y procedimiento encargados de generar los codigos para las tablas MENSAJES
+            y CONVERSACIONES. Se realizan unos ultimos retoques y se da por terminada la parte de codificacion en SQL.
