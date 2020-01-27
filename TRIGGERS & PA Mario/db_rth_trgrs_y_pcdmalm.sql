@@ -112,3 +112,61 @@ tabla de reinos sustituyendo el rey cuyo nombre coincida con el introducido (OLD
 el legado en ese momento (mismo registro) y mediante otra modificación dejaremos el puesto de legado como 
 nulo, es decir, libre donde el rey sea igual al nuevo rey (el antiguo legado).
 */
+CREATE TRIGGER REGLA3 ON CONVERSACIONES
+INSTEAD OF INSERT
+AS
+    DECLARE @gencodconv INT
+	EXEC @gencodconv = TRGHelper_GenWeakCode 'codtema'
+
+	INSERT INTO CONVERSACIONES (codconv, codtema, titulo, creado_por, fecha_creacionbloqueado)
+	VALUES
+    (
+         @gencodconv,
+         (SELECT codtema FROM inserted),
+         (SELECT titulo FROM inserted),
+         (SELECT creado_por FROM inserted),
+         (SELECT fecha_creacion FROM inserted),
+         (SELECT bloqueado FROM inserted)
+    )
+GO
+CREATE TRIGGER REGLA4 ON MENSAJES
+INSTEAD OF INSERT
+AS
+    DECLARE @gencodmsg INT
+    EXEC @gencodmsg = TRGHelper_GenWeakCode 'codtema', 'codconv', 1
+
+    INSERT INTO MENSAJES (codmsg, codtema, codconv, contenido, creado_por, fecha_creacion)
+	VALUES
+    (
+        @gencodmsg,
+        (SELECT codtema FROM inserted),
+        (SELECT codconv FROM inserted),
+        (SELECT contenido FROM inserted),
+        (SELECT creado_por FROM inserted),
+        (SELECT fecha_creacion FROM inserted)
+    )
+GO
+CREATE PROCEDURE TRGHelper_GenWeakCode
+    @codtema CHAR(4),
+    @codconv INT,
+    @mode BIT = 0 -- (0) Conversaciones | (1) Mensajes
+AS
+    IF @mode = 0
+        BEGIN
+            DECLARE @gencodconv INT
+            
+            SET @gencodconv = (SELECT COUNT(C.codtema) FROM CONVERSACIONES C 
+                                WHERE C.codtema = @codtema) + 1
+
+            RETURN @gencodconv
+        END
+    ELSE IF @mode = 1
+        BEGIN
+            DECLARE @gencodmsg INT
+
+            SET @gencodmsg = (SELECT COUNT(M.codconv) FROM MENSAJES M
+                                WHERE M.codconv = @codconv AND M.codtema = @codtema) + 1
+            
+            RETURN @gencodmsg
+        END
+GO
