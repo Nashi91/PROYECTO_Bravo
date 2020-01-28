@@ -318,6 +318,12 @@ AS
          (SELECT bloqueado FROM inserted)
     )
 GO
+/*
+EXPLICACIÓN: en este caso necesitamos que el código de las conversaciones que será igual al número de la conversación 
+dentro de su correspondiente tema, para ello mediante un trigger deberemos llamar a un procedimiento (explicado más 
+adelante) para obtener el código de la conversación e insertar desde la tabla inserted la información propia de dicha
+conversación.
+*/
 --REGLA 4: El codigo de los mensajes sera igual al numero del mensaje dentro de su correspondiente conversacion.      [^]
 
 CREATE TRIGGER TRGIn_WeakCode ON MENSAJES
@@ -337,6 +343,12 @@ AS
         (SELECT fecha_creacion FROM inserted)
     )
 GO
+/*
+EXPLICACIÓN: en este caso necesitamos que el código de los mensajes que será igual al número del mensaje dentro de 
+su correspondiente conversación, para ello  al igual que en la anterior reglas mediante un trigger deberemos llamar 
+a un procedimiento (explicado más adelante) para obtener el código del mensaje e insertar desde la tabla inserted 
+la información propia de dicho mensaje.
+*/
 --REGLA 3 + 4: Procedimiento TRGHelper_GenWeakCode que genera los codigos
 CREATE PROCEDURE TRGHelper_GenWeakCode
     @codtema CHAR(4),
@@ -362,6 +374,13 @@ AS
             RETURN @gencodmsg
         END
 GO
+/*
+EXPLICACIÓN: en referencia a las dos reglas anteriores disponemos de este procedimiento almacenado que es llamado 
+desde los triggers y que, según el código que se le pasa al procedimiento (1 o 0), se genera el código de mensaje 
+o de conversación correspondiente contando los registros de los códigos de conversaciones o de temas respectivamente 
+presentes en las tablas de conversaciones (codtema) o de mensajes (conconv) añadiéndoles uno para obtener como 
+resultado el próximo código necesario.
+*/
 /*
     --- [Cristian] ---
 */
@@ -406,7 +425,7 @@ AS
 	    	WHERE REINOS.LEGADO = (SELECT LEGADO FROM DELETED)
 	    END
     
-	    DELETE PERSONAJES -- Hacemos su correspondiente eliminación.
+	    DELETE PERSONAJES -- Hecho dicha comprobación, hacemos la eliminación en la tabla personajes, en el where cogemos el campo usuario para eliminar los personajes.
 	    FROM PERSONAJES
 	    WHERE PERSONAJES.USUARIO IN (SELECT USUARIO FROM DELETED)
     END
@@ -419,8 +438,8 @@ CREATE TRIGGER TRGIn_EndDateDiff ON EVENTOS
 INSTEAD OF UPDATE
 AS
 	IF (SELECT FECHA_FIN FROM DELETED) = (SELECT FECHA_FIN FROM INSERTED) AND 
-        (SELECT FECHA_INICIO FROM DELETED) = (SELECT FECHA_INICIO FROM INSERTED) -- Comprobar que no se ha modificado nada para poder actualizar.
-	    BEGIN
+        (SELECT FECHA_INICIO FROM DELETED) = (SELECT FECHA_INICIO FROM INSERTED) -- Comprobar que no se ha modificado nada para poder actualizar. Hacemos una comprobación de los campos FECHA_FIN y FECHA_INICIO
+	    BEGIN --> Si no se ha modificado ninguna de las tablas, se ejecuta el UPDATE.
 	    	UPDATE EVENTOS
 	    	SET CODEVNT = (SELECT CODEVNT FROM INSERTED),
 	    	    NOMBRE = (SELECT NOMBRE FROM INSERTED),
@@ -431,8 +450,8 @@ AS
 	    	    FECHA_FIN = (SELECT FECHA_FIN FROM INSERTED)
 	    	WHERE CODEVNT = (SELECT CODEVNT FROM DELETED)
 	    END
-	ELSE IF DATEDIFF(day, (SELECT FECHA_INICIO FROM INSERTED), (SELECT FECHA_FIN FROM INSERTED)) >= 1
-        BEGIN
+	ELSE IF DATEDIFF(day, (SELECT FECHA_INICIO FROM INSERTED), (SELECT FECHA_FIN FROM INSERTED)) >= 1 --> Si se ha modificado alguna de las tablas, se hace la diferencia entre los 2 campos (FECHA_INICIO Y FECHA_FIN de la nueva tabla)
+        BEGIN --> Si el día respeta el mínimo del día, se ejecuta el UPDATE
             UPDATE EVENTOS
 	    	SET CODEVNT = (SELECT CODEVNT FROM INSERTED),
 	    	    NOMBRE = (SELECT NOMBRE FROM INSERTED),
@@ -444,23 +463,23 @@ AS
 	    	WHERE CODEVNT = (SELECT CODEVNT FROM DELETED)
         END
     ELSE
-        PRINT 'LA DIFERENCIA ENTRE LA FECHA DE INICIO Y LA FECHA DE FIN ES MENOR DE 1 DIA'
+        PRINT 'LA DIFERENCIA ENTRE LA FECHA DE INICIO Y LA FECHA DE FIN ES MENOR DE 1 DIA' --> Si no se cumple lo del día, saldrá un mensaje de error, diciendo que no se ha respestado lo del mínimo de un día.
 GO
 /*
     --- [Cristian] ---
 */
 --REGLA 13: Los reinos unicamente podran ser declarados por usuarios administradores
 CREATE TRIGGER TRGIn_AdmPrivilege ON REINOS
-INSTEAD OF INSERT
+INSTEAD OF INSERT -- Antes de insertar, por ello es INSTEAD OF, que haga una comprobación
 -- Hacemos una comprobación de que el usuario sea root o no... Si no lo es no puede declarar los reinos
 AS
-	IF (SELECT TIPO FROM USUARIOS WHERE USUARIOS.USUARIO=(SELECT CREADO_POR FROM INSERTED))<>2
+	IF (SELECT TIPO FROM USUARIOS WHERE USUARIOS.USUARIO=(SELECT CREADO_POR FROM INSERTED))<>2 -- De la tabla USUARIOS cogemos el tipo donde en la tabla USUARIOS sea igual al campo CREADO_POR de la nueva tabla, en este caso si es distinto que 2. Quiere decir que el usuario no es administrador
 	    BEGIN
 	    	PRINT 'ERROR, EL USUARIO NO ES ROOT :V'
 	    END
 	ELSE
-	    BEGIN
-	    	INSERT INTO REINOS
+	    BEGIN --> Si es usuario administrador
+	    	INSERT INTO REINOS --> Insertamos en la tabla REINOS los datos de la nueva tabla (INSERTED)
 	    	SELECT * FROM INSERTED
 	    END
 GO
@@ -470,11 +489,11 @@ GO
 */
 --REGLA 6: Dada la destruccion de un reino, todos sus territorios deberan volverse tierra de nadie. [SProc_KngdmDestroyed]
 CREATE PROCEDURE SProc_KngdmDestroyed
-@KINGDOM_DEAD NVARCHAR(35)
+@KINGDOM_DEAD NVARCHAR(35) --Creamos un parámetro, se escoge el campo nombre de la tabla territorios.
 AS
-	UPDATE TERRITORIOS
-	    SET REINO = NULL
-	WHERE TERRITORIOS.REINO = @KINGDOM_DEAD
+	UPDATE TERRITORIOS --Hacemos un UPDATE en la tabla TERRITORIOS
+	    SET REINO = NULL -- Donde hacemos que el campo REINO sea nulo
+	WHERE TERRITORIOS.REINO = @KINGDOM_DEAD -- En el where cogemos el campo reino que sea igual al parámetro que le pasamos en este caso el nombre del reino.
 GO
 -- EXEC SProc_KngdmDestroyed 'reino'
 /*
