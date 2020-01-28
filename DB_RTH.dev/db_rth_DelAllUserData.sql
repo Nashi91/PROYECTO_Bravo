@@ -13,19 +13,18 @@ GO
 CREATE TRIGGER TRGIn_UserDelete ON USUARIOS
 INSTEAD OF DELETE
 AS
-    /* Cristian */
-    IF (SELECT TIPO FROM DELETED) = 2
-        BEGIN
-            PRINT 'NO SE PUEDEN ELIMINAR USUARIOS ADMINISTRADORES'
-        END
-    ELSE
     /* Carlos */
         BEGIN
             DECLARE @usrlogin NVARCHAR(15)
             SET @usrlogin = (SELECT usuario FROM deleted)
         
             EXEC TRGHelper_DelAllUserData @usrlogin, 1
-        
+        END
+    /* Cristian */
+    IF (SELECT TIPO FROM DELETED) = 2
+            PRINT 'NO SE PUEDEN ELIMINAR USUARIOS ADMINISTRADORES'
+    ELSE
+        BEGIN
             DELETE FROM USUARIOS
             WHERE usuario = @usrlogin
         END
@@ -69,9 +68,11 @@ AS
                 WHERE creado_por = @usrlogin
         END
     -- Eliminación del usuario si es llamado por usuario (Modo no trigger)
-    IF @mode = 0
+    IF @mode = 0 AND @usrtype < 2
         DELETE FROM USUARIOS
         WHERE usuario = @usrlogin
+    ELSE IF @usrtype = 2
+        PRINT 'ERROR, NO SE PUEDEN ELIMINAR USUARIOS ADMINISTRADORES'
 GO
 
 -- EXEC TRGHelper_DelAllUserData 'usuario'
