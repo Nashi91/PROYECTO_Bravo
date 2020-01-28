@@ -307,7 +307,7 @@ AS
     DECLARE @gencodconv INT
 	EXEC @gencodconv = TRGHelper_GenWeakCode 'codtema'
 
-	INSERT INTO CONVERSACIONES (codconv, codtema, titulo, creado_por, fecha_creacionbloqueado)
+	INSERT INTO CONVERSACIONES (codconv, codtema, titulo, creado_por, fecha_creacion,bloqueado)
 	VALUES
     (
          @gencodconv,
