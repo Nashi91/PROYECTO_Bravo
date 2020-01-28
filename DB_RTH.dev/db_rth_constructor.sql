@@ -337,7 +337,7 @@ AS
         (SELECT fecha_creacion FROM inserted)
     )
 GO
---REGLA 4 + 5: Procedimiento TRGHelper_GenWeakCode que genera los codigos
+--REGLA 3 + 4: Procedimiento TRGHelper_GenWeakCode que genera los codigos
 CREATE PROCEDURE TRGHelper_GenWeakCode
     @codtema CHAR(4),
     @codconv INT,
