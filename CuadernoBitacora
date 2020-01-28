@@ -63,3 +63,5 @@ CUADERNO BITACORA
             mejorar la lectura del codigo.
 27-01-2020: Conjuntamente Mario y Carlos desarrollan el trigger y procedimiento encargados de generar los codigos para las tablas MENSAJES
             y CONVERSACIONES. Se realizan unos ultimos retoques y se da por terminada la parte de codificacion en SQL.
+28-01-2020: Con la fecha de entrega y de presentación cercanas, se dedica la hora a explicar los procedimientos y triggers entre los
+            componentes del grupo para resolver dudas y asegurar que el entendimiento de estos es completo por parte de todos.
