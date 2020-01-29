@@ -1,5 +1,5 @@
 /*----------------------------------------------
-    DATABSE CONSTRUCTOR | Reinos de Thalesia
+       TRIGGERS + SPs | Reinos de Thalesia
       Carlos, Mario, Cristian / 2º GFS ASIR
           Centro integrado Cuatrovientos
                   v1.0 Release Ver.
